@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:graduation_project/constants.dart';
 import 'package:graduation_project/screens/initial_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -22,6 +23,9 @@ class MyApp extends StatelessWidget {
       builder: () => MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Healthy life',
+        theme: ThemeData(
+          primaryColor: MyColors.kLightPrimaryColor,
+        ),
         builder: (context, widget) {
           ScreenUtil.setContext(context);
           return MediaQuery(

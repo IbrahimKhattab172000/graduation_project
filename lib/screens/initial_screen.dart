@@ -25,7 +25,7 @@ class _InitialScreenState extends State<InitialScreen> {
       Duration(seconds: 5),
       () => Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => OnBoardingScreen(),
+          builder: (context) => OnboardingScreen(),
         ),
       ),
     );
