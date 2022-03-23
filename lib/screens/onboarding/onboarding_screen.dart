@@ -61,7 +61,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         elevation: 0,
         centerTitle: true,
         title: Text(
-          'Healthy Life',
+          'Healthy',
           style: TextStyle(
             color: MyColors.kLightPrimaryColor,
             fontSize: 38,
