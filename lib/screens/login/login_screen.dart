@@ -24,16 +24,8 @@ class _LoginScreenState extends State<LoginScreen> {
         child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.only(top: 75.h),
-            child: Container(
-              padding: EdgeInsets.all(20.h),
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(25.r),
-                  topLeft: Radius.circular(25.r),
-                ),
-              ),
+            child: roundedContainer(
+              height: 588.h,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -137,7 +129,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   otherLoginApproachs(),
 
                   SizedBox(
-                    height: 50.h,
+                    height: 10.h,
                   ),
                 ],
               ),

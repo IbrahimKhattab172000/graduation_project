@@ -27,16 +27,8 @@ class _InputsScreenState extends State<InputsScreen> {
             children: [
               Padding(
                 padding: EdgeInsets.only(top: 60.h),
-                child: Container(
-                  padding: EdgeInsets.all(20.h),
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(25.r),
-                      topLeft: Radius.circular(25.r),
-                    ),
-                  ),
+                child: roundedContainer(
+                  height: 600.h,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

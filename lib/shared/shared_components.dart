@@ -60,6 +60,28 @@ AppBar simpleAppBar(
   );
 }
 
+Container roundedContainer({
+  required Widget child,
+  double? width,
+  double? height,
+  Color? color,
+  double? radius,
+}) {
+  return Container(
+    padding: EdgeInsets.all(20.h),
+    width: width ?? double.infinity,
+    height: height ?? 650.h,
+    decoration: BoxDecoration(
+      color: color ?? Colors.white,
+      borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(radius ?? 30.r),
+        topRight: Radius.circular(radius ?? 30.r),
+      ),
+    ),
+    child: child,
+  );
+}
+
 Container mainContainerWidelySpread({
   required Widget child,
 }) {

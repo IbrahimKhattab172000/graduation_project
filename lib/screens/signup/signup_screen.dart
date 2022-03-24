@@ -26,16 +26,8 @@ class _SignupScreenState extends State<SignupScreen> {
         child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.only(top: 30.h),
-            child: Container(
-              padding: EdgeInsets.all(20.h),
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(25.r),
-                  topLeft: Radius.circular(25.r),
-                ),
-              ),
+            child: roundedContainer(
+              height: 700.h,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -85,12 +77,6 @@ class _SignupScreenState extends State<SignupScreen> {
                     labelText: "Confirm",
                     hintText: "Confirm Password",
                     prefixWidget: Icon(Icons.lock),
-                  ),
-                  textBeforeEachTextFormField(text: "Address"),
-                  textFormField(
-                    labelText: "Address",
-                    hintText: "Enter your Address",
-                    prefixWidget: Icon(Icons.location_on),
                   ),
                   SizedBox(
                     height: 20.h,

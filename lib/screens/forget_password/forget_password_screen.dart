@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:graduation_project/screens/otp/otp_screen.dart';
 import 'package:graduation_project/shared/shared_components.dart';
 
 import '../../constants.dart';
@@ -27,17 +28,8 @@ class ForgetPassword extends StatelessWidget {
               SizedBox(
                 height: 30.h,
               ),
-              Container(
-                padding: EdgeInsets.all(20.h),
-                width: double.infinity,
-                // height: 328.h,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(25.r),
-                    topLeft: Radius.circular(25.r),
-                  ),
-                ),
+              roundedContainer(
+                height: 428.h,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -62,7 +54,13 @@ class ForgetPassword extends StatelessWidget {
                     Center(
                       child: defaultButton(
                         background: MyColors.kLightPrimaryColor,
-                        function: () {},
+                        function: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => OtpScreen(),
+                            ),
+                          );
+                        },
                         text: "Submit",
                         height: 54.h,
                         width: 232.w,
