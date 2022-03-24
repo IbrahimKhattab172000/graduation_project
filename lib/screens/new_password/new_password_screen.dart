@@ -1,16 +1,14 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables
+// ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:graduation_project/constants.dart';
-import 'package:graduation_project/screens/new_password/new_password_screen.dart';
-import 'package:graduation_project/screens/otp/otp_components.dart';
 import 'package:graduation_project/shared/shared_components.dart';
 
-import 'otp_from.dart';
+import '../../constants.dart';
+import 'new_password_components.dart';
 
-class OtpScreen extends StatelessWidget {
-  OtpScreen({Key? key}) : super(key: key);
+class NewPasswordScreen extends StatelessWidget {
+  const NewPasswordScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +21,7 @@ class OtpScreen extends StatelessWidget {
               SizedBox(
                 height: 30.h,
               ),
-              mailBoxWidget(),
+              securityWidget(),
               SizedBox(
                 height: 30.h,
               ),
@@ -31,31 +29,30 @@ class OtpScreen extends StatelessWidget {
                 height: 428.h,
                 child: Column(
                   children: [
+                    columnForMainTextWidgetsNewPassword(),
                     SizedBox(
                       height: 30.h,
                     ),
-                    columnForMainTextWidgetsOtp(),
+                    textFormField(
+                      labelText: "New password",
+                      hintText: "Enter new password",
+                      prefixWidget: Icon(Icons.lock),
+                    ),
                     SizedBox(
                       height: 30.h,
                     ),
-                    OtpForm(),
-                    SizedBox(
-                      height: 15.h,
+                    textFormField(
+                      labelText: "Confirm password",
+                      hintText: "Confirm new password",
+                      prefixWidget: Icon(Icons.lock),
                     ),
-                    resendText(),
                     SizedBox(
-                      height: 15.h,
+                      height: 30.h,
                     ),
                     defaultButton(
                       background: MyColors.kLightPrimaryColor,
-                      function: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => NewPasswordScreen(),
-                          ),
-                        );
-                      },
-                      text: "Verify",
+                      function: () {},
+                      text: "Submit",
                       height: 54.h,
                       width: 232.w,
                       radius: 33.r,

@@ -63,7 +63,7 @@ Widget digitalCode({
   );
 }
 
-Widget columnForMainTextWidgets() {
+Widget columnForMainTextWidgetsOtp() {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
