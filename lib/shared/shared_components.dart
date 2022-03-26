@@ -108,7 +108,7 @@ Widget textBeforeEachTextFormField({required String text}) {
 
 Widget defaultButton({
   double width = double.infinity,
-  required Color background,
+  Color? background,
   bool isUpperCase = true,
   double radius = 0.0,
   double height = 40.0,
@@ -128,7 +128,7 @@ Widget defaultButton({
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(radius + 10),
-        color: background,
+        color: background ?? MyColors.kLightPrimaryColor,
         boxShadow: [
           BoxShadow(
             color: MyColors.kSpecialBetweenWhiteAndGrey,

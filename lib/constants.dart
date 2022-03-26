@@ -6,6 +6,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class MyColors {
   static const kPrimaryColor = Color(0xFF102837);
   static const kLightPrimaryColor = Color(0xFF1F506E);
+  static const kSpecialPrimary = Color(0xFF385E75);
+  static const kSpecialLightPrimary = Color(0xFFccdbdc);
   static const kLightGray = Color(0xFF979797);
   static const kSpecialBetweenWhiteAndGrey = Color(0xFFf2e9e4);
 

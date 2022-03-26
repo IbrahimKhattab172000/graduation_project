@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:graduation_project/screens/fitness_level/fitness_screen.dart';
 import 'package:graduation_project/shared/shared_components.dart';
 
 import '../../constants.dart';
@@ -98,7 +99,13 @@ class _InputsScreenState extends State<InputsScreen> {
                       Center(
                         child: defaultButton(
                           background: MyColors.kLightPrimaryColor,
-                          function: () {},
+                          function: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => FitnessScreen(),
+                              ),
+                            );
+                          },
                           text: "Save",
                           width: 232.w,
                           height: 54.h,

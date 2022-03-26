@@ -7,6 +7,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/screens/new_password/new_password_screen.dart';
 import 'package:graduation_project/screens/otp/otp_screen.dart';
 
+import 'screens/fitness_level/fitness_screen.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -31,12 +33,12 @@ class MyApp extends StatelessWidget {
         builder: (context, widget) {
           ScreenUtil.setContext(context);
           return MediaQuery(
-            //Setting font does not change with system font size
+            //*Setting font does not change with system font size
             data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
             child: widget!,
           );
         },
-        home: NewPasswordScreen(),
+        home: InitialScreen(),
       ),
     );
   }
