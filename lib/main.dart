@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:graduation_project/constants.dart';
+import 'package:graduation_project/screens/extra_inputs/health_condition/health_condition_screen.dart';
 import 'package:graduation_project/screens/initial_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/screens/new_password/new_password_screen.dart';

@@ -10,6 +10,7 @@ class MyColors {
   static const kSpecialLightPrimary = Color(0xFFccdbdc);
   static const kLightGray = Color(0xFF979797);
   static const kSpecialBetweenWhiteAndGrey = Color(0xFFf2e9e4);
+  static const kExtraInputs = Color(0xFF53798F);
 
   ///------------
   static const others1 = Color(0xFFE4E4E4);

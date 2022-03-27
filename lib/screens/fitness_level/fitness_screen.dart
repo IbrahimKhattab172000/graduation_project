@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/constants.dart';
+import 'package:graduation_project/screens/extra_inputs/health_condition/health_condition_screen.dart';
 import 'package:graduation_project/shared/shared_components.dart';
 
 import 'fitness_components.dart';
@@ -84,11 +85,14 @@ class FitnessScreen extends StatelessWidget {
                     ),
 
                     defaultButton(
-                      function: () {},
+                      function: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => HealthConditionScreen(),
+                          ),
+                        );
+                      },
                       text: "Next",
-                      height: 54.h,
-                      width: 232.w,
-                      radius: 33.r,
                     ),
                   ],
                 ),

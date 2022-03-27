@@ -107,17 +107,17 @@ Widget textBeforeEachTextFormField({required String text}) {
 }
 
 Widget defaultButton({
-  double width = double.infinity,
+  double? width,
   Color? background,
-  bool isUpperCase = true,
-  double radius = 0.0,
-  double height = 40.0,
+  bool isUpperCase = false,
+  double? radius,
+  double? height,
   required VoidCallback function,
   required String text,
 }) =>
     Container(
-      width: width,
-      height: height,
+      width: width ?? 232.w,
+      height: height ?? 54.h,
       child: MaterialButton(
         elevation: 30,
         onPressed: function,
@@ -127,7 +127,7 @@ Widget defaultButton({
         ),
       ),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(radius + 10),
+        borderRadius: BorderRadius.circular(radius ?? 33.r),
         color: background ?? MyColors.kLightPrimaryColor,
         boxShadow: [
           BoxShadow(
