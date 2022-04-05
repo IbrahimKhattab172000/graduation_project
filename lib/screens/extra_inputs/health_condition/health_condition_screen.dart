@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:graduation_project/constants.dart';
 import 'package:graduation_project/screens/extra_inputs/injuries/injuries_condition_screen.dart';
 import 'package:graduation_project/shared/shared_components.dart';
 

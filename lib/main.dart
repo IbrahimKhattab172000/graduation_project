@@ -2,13 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:graduation_project/constants.dart';
-import 'package:graduation_project/screens/extra_inputs/health_condition/health_condition_screen.dart';
-import 'package:graduation_project/screens/initial_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:graduation_project/screens/new_password/new_password_screen.dart';
-import 'package:graduation_project/screens/otp/otp_screen.dart';
-
-import 'screens/fitness_level/fitness_screen.dart';
+import 'package:graduation_project/screens/initial_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -29,7 +24,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Healthy life',
         theme: ThemeData(
-          primaryColor: MyColors.kLightPrimaryColor,
+          primaryColor: MyColors.kPrimaryColor,
         ),
         builder: (context, widget) {
           ScreenUtil.setContext(context);

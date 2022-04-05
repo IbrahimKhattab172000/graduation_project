@@ -5,7 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/screens/otp/otp_screen.dart';
 import 'package:graduation_project/shared/shared_components.dart';
 
-import '../../constants.dart';
 import 'forget_password_components.dart';
 
 class ForgetPassword extends StatelessWidget {
@@ -53,7 +52,6 @@ class ForgetPassword extends StatelessWidget {
                     ),
                     Center(
                       child: defaultButton(
-                        background: MyColors.kLightPrimaryColor,
                         function: () {
                           Navigator.of(context).push(
                             MaterialPageRoute(
@@ -62,9 +60,6 @@ class ForgetPassword extends StatelessWidget {
                           );
                         },
                         text: "Submit",
-                        height: 54.h,
-                        width: 232.w,
-                        radius: 40.r,
                       ),
                     ),
                     backToLogin(context),

@@ -97,7 +97,6 @@ class _OnboardingBodyState extends State<OnboardingBody> {
                       height: 15.h,
                     ),
                     defaultButton(
-                      background: MyColors.kLightPrimaryColor,
                       function: () {
                         if (isLast) {
                           navigateAndFinish(
@@ -114,9 +113,6 @@ class _OnboardingBodyState extends State<OnboardingBody> {
                         }
                       },
                       text: isLast ? "Get started" : "Next",
-                      height: 55.h,
-                      radius: 30.r,
-                      width: 258.w,
                     ),
                     SizedBox(
                       height: 10.h,
@@ -143,14 +139,12 @@ class _OnboardingBodyState extends State<OnboardingBody> {
       width: currentPage == index ? 10.w : 5.w,
       decoration: BoxDecoration(
         color: currentPage == index
-            ? MyColors.kLightPrimaryColor
+            ? MyColors.kPrimaryColor
             : MyColors.kSpecialBetweenWhiteAndGrey,
         borderRadius: BorderRadius.circular(10.r),
       ),
     );
   }
-
- 
 }
 
  

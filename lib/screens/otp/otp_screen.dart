@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:graduation_project/constants.dart';
 import 'package:graduation_project/screens/new_password/new_password_screen.dart';
 import 'package:graduation_project/screens/otp/otp_components.dart';
 import 'package:graduation_project/shared/shared_components.dart';
@@ -47,7 +46,6 @@ class OtpScreen extends StatelessWidget {
                       height: 15.h,
                     ),
                     defaultButton(
-                      background: MyColors.kLightPrimaryColor,
                       function: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
@@ -56,9 +54,6 @@ class OtpScreen extends StatelessWidget {
                         );
                       },
                       text: "Verify",
-                      height: 54.h,
-                      width: 232.w,
-                      radius: 33.r,
                     ),
                   ],
                 ),

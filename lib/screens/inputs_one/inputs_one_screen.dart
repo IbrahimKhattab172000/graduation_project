@@ -98,7 +98,6 @@ class _InputsScreenState extends State<InputsScreen> {
                       ),
                       Center(
                         child: defaultButton(
-                          background: MyColors.kLightPrimaryColor,
                           function: () {
                             Navigator.of(context).push(
                               MaterialPageRoute(
@@ -107,9 +106,6 @@ class _InputsScreenState extends State<InputsScreen> {
                             );
                           },
                           text: "Save",
-                          width: 232.w,
-                          height: 54.h,
-                          radius: 33.r,
                         ),
                       ),
                     ],
@@ -141,7 +137,7 @@ class _InputsScreenState extends State<InputsScreen> {
           });
         },
         label: _currentSliderValue.round().toString(),
-        activeColor: MyColors.kLightPrimaryColor,
+        activeColor: MyColors.kPrimaryColor,
         inactiveColor: Colors.grey[100],
         thumbColor: Colors.white,
       ),

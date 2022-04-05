@@ -2,9 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:graduation_project/screens/layout_screen/layout_screen.dart';
 import 'package:graduation_project/shared/shared_components.dart';
 
-import '../../constants.dart';
 import 'login_components.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -87,12 +87,14 @@ class _LoginScreenState extends State<LoginScreen> {
 
                   Center(
                     child: defaultButton(
-                      background: MyColors.kLightPrimaryColor,
-                      function: () {},
+                      function: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => LayoutScreen(),
+                          ),
+                        );
+                      },
                       text: "Log in",
-                      height: 54.h,
-                      width: 232.w,
-                      radius: 50.r,
                     ),
                   ),
                   SizedBox(

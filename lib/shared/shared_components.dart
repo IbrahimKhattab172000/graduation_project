@@ -28,12 +28,15 @@ void navigateAndFinish(
 
 AppBar simpleAppBar(
   BuildContext context, {
-  IconData? icon,
-  Color? iconColor,
-  double? iconSize,
+  IconData? leadingIcon,
+  Color? leadingIconColor,
+  double? leadingIconSize,
   Color? appBarColor,
   String? title,
   bool showArrowBack = true,
+  bool showActions = false,
+  VoidCallback? onPressAction,
+  Widget? actionsWidget,
 }) {
   return AppBar(
     ///*Because we will have an exception for the login screen
@@ -43,20 +46,28 @@ AppBar simpleAppBar(
               Navigator.of(context).pop();
             },
             icon: Icon(
-              icon ?? Icons.arrow_back_ios,
-              size: iconSize ?? 25.w,
-              color: iconColor ?? Colors.white,
+              leadingIcon ?? Icons.arrow_back_ios,
+              size: leadingIconSize ?? 25.w,
+              color: leadingIconColor ?? Colors.white,
             ),
           )
         : Container(),
 
-    backgroundColor: appBarColor ?? MyColors.kLightPrimaryColor,
+    backgroundColor: appBarColor ?? MyColors.kPrimaryColor,
     title: Text(
       title ?? "Healthy Life",
       style: TextStyle(fontSize: 25.sp, fontWeight: FontWeight.bold),
     ),
     centerTitle: true,
     elevation: 0,
+    actions: [
+      showActions
+          ? IconButton(
+              onPressed: onPressAction,
+              icon: actionsWidget!,
+            )
+          : Container(),
+    ],
   );
 }
 
@@ -82,13 +93,13 @@ Container roundedContainer({
   );
 }
 
-Container mainContainerWidelySpread({
+Widget mainContainerWidelySpread({
   required Widget child,
 }) {
   return Container(
     height: double.infinity,
     width: double.infinity,
-    color: MyColors.kLightPrimaryColor,
+    color: MyColors.kPrimaryColor,
     child: child,
   );
 }
@@ -108,7 +119,7 @@ Widget textBeforeEachTextFormField({required String text}) {
 
 Widget defaultButton({
   double? width,
-  Color? background,
+  // Color? background,
   bool isUpperCase = false,
   double? radius,
   double? height,
@@ -116,7 +127,7 @@ Widget defaultButton({
   required String text,
 }) =>
     Container(
-      width: width ?? 232.w,
+      width: width ?? 330.w,
       height: height ?? 54.h,
       child: MaterialButton(
         elevation: 30,
@@ -128,7 +139,7 @@ Widget defaultButton({
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(radius ?? 33.r),
-        color: background ?? MyColors.kLightPrimaryColor,
+        color: MyColors.kPrimaryColor,
         boxShadow: [
           BoxShadow(
             color: MyColors.kSpecialBetweenWhiteAndGrey,

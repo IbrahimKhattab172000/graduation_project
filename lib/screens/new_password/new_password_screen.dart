@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/shared/shared_components.dart';
 
-import '../../constants.dart';
 import 'new_password_components.dart';
 
 class NewPasswordScreen extends StatelessWidget {
@@ -50,12 +49,8 @@ class NewPasswordScreen extends StatelessWidget {
                       height: 30.h,
                     ),
                     defaultButton(
-                      background: MyColors.kLightPrimaryColor,
                       function: () {},
                       text: "Submit",
-                      height: 54.h,
-                      width: 232.w,
-                      radius: 33.r,
                     ),
                   ],
                 ),

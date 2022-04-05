@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:graduation_project/constants.dart';
 import 'package:graduation_project/shared/shared_components.dart';
 
 import '../inputs_one/inputs_one_screen.dart';
@@ -83,7 +82,6 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                   Center(
                     child: defaultButton(
-                      background: MyColors.kLightPrimaryColor,
                       function: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
@@ -92,9 +90,6 @@ class _SignupScreenState extends State<SignupScreen> {
                         );
                       },
                       text: "Sign up",
-                      width: 232.w,
-                      height: 54.h,
-                      radius: 33.r,
                     ),
                   ),
                 ],

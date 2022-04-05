@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:graduation_project/constants.dart';
+import 'package:graduation_project/screens/layout_screen/layout_screen.dart';
 import 'package:graduation_project/shared/shared_components.dart';
 
 import '../extra_inputs_components.dart';
@@ -97,7 +97,13 @@ class InjuriesConditionScreen extends StatelessWidget {
                       height: 10.h,
                     ),
                     defaultButton(
-                      function: () {},
+                      function: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => LayoutScreen(),
+                          ),
+                        );
+                      },
                       text: "Finish",
                     ),
                   ],
