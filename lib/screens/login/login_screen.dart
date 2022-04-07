@@ -19,7 +19,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: simpleAppBar(context, showArrowBack: false),
+      appBar: simpleAppBar(showLeading: false),
       body: mainContainerWidelySpread(
         child: SingleChildScrollView(
           child: Padding(

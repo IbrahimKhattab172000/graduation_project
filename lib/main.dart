@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:graduation_project/constants.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/screens/initial_screen.dart';
+import 'package:graduation_project/screens/layout_screen/layout_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -23,9 +24,6 @@ class MyApp extends StatelessWidget {
       builder: () => MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Healthy life',
-        theme: ThemeData(
-          primaryColor: MyColors.kPrimaryColor,
-        ),
         builder: (context, widget) {
           ScreenUtil.setContext(context);
           return MediaQuery(

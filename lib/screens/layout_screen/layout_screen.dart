@@ -86,7 +86,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
         index: index,
         backgroundColor: MyColors.kSpecialLightPrimary,
         color: MyColors.kPrimaryColor,
-        animationCurve: Curves.easeInOutCubicEmphasized,
+        animationCurve: Curves.easeInOut,
         onTap: (index) => setState(() => this.index = index),
       ),
       body: screens[index],

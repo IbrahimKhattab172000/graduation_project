@@ -20,7 +20,11 @@ class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: simpleAppBar(context),
+      appBar: simpleAppBar(
+        onPressLeading: () {
+          Navigator.of(context).pop();
+        },
+      ),
       body: mainContainerWidelySpread(
         child: SingleChildScrollView(
           child: Padding(

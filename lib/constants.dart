@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MyColors {
-  // static const kPrimaryColor = Color(0xFF0e1428);
 
   static const kPrimaryColor = Color(0xFF102837);
 

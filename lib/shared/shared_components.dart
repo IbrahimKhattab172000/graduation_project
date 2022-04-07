@@ -27,24 +27,24 @@ void navigateAndFinish(
     );
 
 AppBar simpleAppBar(
-  BuildContext context, {
+    // BuildContext context,
+    {
   IconData? leadingIcon,
   Color? leadingIconColor,
   double? leadingIconSize,
   Color? appBarColor,
   String? title,
-  bool showArrowBack = true,
+  bool showLeading = true,
   bool showActions = false,
   VoidCallback? onPressAction,
   Widget? actionsWidget,
+  VoidCallback? onPressLeading,
 }) {
   return AppBar(
     ///*Because we will have an exception for the login screen
-    leading: showArrowBack
+    leading: showLeading
         ? IconButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
+            onPressed: onPressLeading,
             icon: Icon(
               leadingIcon ?? Icons.arrow_back_ios,
               size: leadingIconSize ?? 25.w,

@@ -13,7 +13,11 @@ class ForgetPassword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: simpleAppBar(context),
+      appBar: simpleAppBar(
+        onPressLeading: () {
+          Navigator.of(context).pop();
+        },
+      ),
       body: mainContainerWidelySpread(
         child: SingleChildScrollView(
           child: Column(
