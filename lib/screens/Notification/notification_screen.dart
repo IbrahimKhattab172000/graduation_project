@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -21,32 +21,63 @@ class NotificationScreen extends StatelessWidget {
         title: "Notification",
       ),
       body: mainContainerWidelySpread(
-        child: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
-          child: Padding(
-            padding: EdgeInsets.all(15.w),
-            child: Container(
-              //*That's a dummy height and after filling the page with the elements
-              //*..I should comment that height
-              height: 605.h,
-              width: 325.w,
-              decoration: BoxDecoration(
-                color: MyColors.kSpecialLightPrimary,
-                borderRadius: BorderRadius.circular(12.r),
-              ),
-              child: Column(
-                children: [
-                  //*Expanded here is important than you yasta
-                  Expanded(
-                    child: ListView.builder(
-                      // shrinkWrap: true,
-                      physics: BouncingScrollPhysics(),
-                      itemBuilder: (context, index) => notificationWidget(),
-                      itemCount: 20,
+        child: Padding(
+          padding: EdgeInsets.all(15.w),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                DefaultTabController(
+                  length: 2,
+                  initialIndex: 0,
+                  //*That white container is so important
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(25.0.r),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.all(1.0.h),
+                      child: Column(
+                        children: [
+                          TabBar(
+                            indicator: BoxDecoration(
+                              color: MyColors.kMainLightColor,
+                              borderRadius: BorderRadius.circular(25.0.r),
+                            ),
+                            labelColor: Colors.white,
+                            unselectedLabelColor: MyColors.kMaindarkColor,
+                            tabs: [
+                              Tab(
+                                child: notificationTabBarItem(
+                                  text: "All",
+                                ),
+                              ),
+                              Tab(
+                                child: notificationTabBarItem(
+                                  text: "Unread",
+                                ),
+                              ),
+                            ],
+                          ),
+                          Container(
+                            height: 600.h, //height of TabBarView
+                            decoration: BoxDecoration(),
+                            child: TabBarView(
+                              physics: BouncingScrollPhysics(),
+                              children: [
+                                //*First item
+                                notificationTabBarViewWidget(),
+                                //*Second item
+                                notificationTabBarViewWidget(),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),

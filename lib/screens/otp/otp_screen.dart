@@ -21,6 +21,7 @@ class OtpScreen extends StatelessWidget {
       ),
       body: mainContainerWidelySpread(
         child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
           child: Column(
             children: [
               SizedBox(
@@ -30,14 +31,14 @@ class OtpScreen extends StatelessWidget {
               SizedBox(
                 height: 30.h,
               ),
-              roundedContainer(
-                height: 428.h,
+              roundedWidget(
+                height: 720.h,
                 child: Column(
                   children: [
                     SizedBox(
                       height: 30.h,
                     ),
-                    columnForMainTextWidgetsOtp(),
+                    columnForMainTextWidgetsOtp(context),
                     SizedBox(
                       height: 30.h,
                     ),

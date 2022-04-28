@@ -10,19 +10,19 @@ Stack addProfilePicStack() {
     alignment: AlignmentDirectional.bottomEnd,
     children: [
       CircleAvatar(
-        radius: 45.r,
-        backgroundColor: MyColors.kSpecialBetweenWhiteAndGrey,
+        radius: 55.r,
+        backgroundColor: MyColors.kSpecialLightGreyColor,
         child: IconButton(
           onPressed: () {},
           icon: Icon(
             Icons.photo_camera,
-            color: Colors.grey[800],
+            color: MyColors.kExtraLightMainColor,
           ),
         ),
       ),
       CircleAvatar(
-        backgroundColor: MyColors.kLightGray,
-        radius: 10.r,
+        backgroundColor: MyColors.kExtraLightMainColor,
+        radius: 15.r,
         child: Icon(
           Icons.add,
           size: 10.w,
@@ -37,7 +37,7 @@ Text signupText() {
   return Text(
     "Sign up",
     style: TextStyle(
-      color: Colors.black,
+      color: MyColors.kMaindarkColor,
       fontSize: 25.sp,
       fontWeight: FontWeight.w500,
     ),

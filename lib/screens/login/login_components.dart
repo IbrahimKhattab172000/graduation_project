@@ -70,7 +70,10 @@ GestureDetector signupHere(BuildContext context) {
     },
     child: Text(
       "Sign up here",
-      style: TextStyle(fontSize: 13.sp),
+      style: TextStyle(
+        fontSize: 13.sp,
+        color: MyColors.kMaindarkColor,
+      ),
     ),
   );
 }
@@ -126,10 +129,10 @@ Widget dontHaveAccText() {
 
 Widget loginText() {
   return Text(
-    "Log in",
+    "Login",
     style: TextStyle(
-      color: Colors.black,
-      fontSize: 25.sp,
+      color: MyColors.kMaindarkColor,
+      fontSize: 30.sp,
       fontWeight: FontWeight.w500,
     ),
   );

@@ -4,15 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MyColors {
+  static const kMaindarkColor = Color(0xFF102837);
 
-  static const kPrimaryColor = Color(0xFF102837);
-
-  static const kLightPrimaryColor = Color(0xFF1F506E);
-  static const kSpecialPrimary = Color(0xFF385E75);
-  static const kSpecialLightPrimary = Color(0xFFccdbdc);
+  static const kMainLightColor = Color(0xFF1F506E);
+  static const kSpecialMainColor = Color(0xFF385E75);
   static const kLightGray = Color(0xFF979797);
+  static const kSpecialLightGreyColor = Color(0xFFccdbdc);
   static const kSpecialBetweenWhiteAndGrey = Color(0xFFf2e9e4);
-  static const kExtraInputs = Color(0xFF53798F);
+  static const kExtraLightMainColor = Color(0xFF53798F);
 
   ///------------
   static const others1 = Color(0xFFE4E4E4);

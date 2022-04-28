@@ -36,7 +36,7 @@ class OnboardingContent extends StatelessWidget {
             height: 275.h,
             width: 329.w,
             decoration: BoxDecoration(
-              color: MyColors.kPrimaryColor,
+              color: MyColors.kMainLightColor,
               borderRadius: BorderRadius.circular(30),
             ),
             child: Image.asset(
@@ -49,7 +49,7 @@ class OnboardingContent extends StatelessWidget {
           child: Text(
             text,
             style: TextStyle(
-              color: MyColors.kPrimaryColor,
+              color: MyColors.kMainLightColor,
               fontSize: 29.sp,
               fontWeight: FontWeight.w400,
             ),
@@ -59,7 +59,7 @@ class OnboardingContent extends StatelessWidget {
         Text(
           describtion,
           style: TextStyle(
-            color: MyColors.kPrimaryColor,
+            color: MyColors.kMainLightColor,
             fontSize: 17.sp,
             fontWeight: FontWeight.w300,
           ),

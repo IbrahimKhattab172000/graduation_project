@@ -1,10 +1,11 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:graduation_project/constants.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:graduation_project/constants.dart';
 import 'package:graduation_project/screens/initial_screen.dart';
-import 'package:graduation_project/screens/layout_screen/layout_screen.dart';
+
+import 'screens/home_screen/home_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -33,6 +34,11 @@ class MyApp extends StatelessWidget {
           );
         },
         home: InitialScreen(),
+        // theme: ThemeData(
+        //   colorScheme: ColorScheme.fromSwatch(
+        //     primarySwatch: Colors.blue,
+        //   ),
+        // ),
       ),
     );
   }

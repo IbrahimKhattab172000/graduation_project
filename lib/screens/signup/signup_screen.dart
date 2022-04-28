@@ -2,9 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:graduation_project/screens/describtive_info/describtive_info_screen.dart';
 import 'package:graduation_project/shared/shared_components.dart';
 
-import '../inputs_one/inputs_one_screen.dart';
 import 'signup_components.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -27,10 +27,11 @@ class _SignupScreenState extends State<SignupScreen> {
       ),
       body: mainContainerWidelySpread(
         child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
           child: Padding(
             padding: EdgeInsets.only(top: 30.h),
-            child: roundedContainer(
-              height: 700.h,
+            child: roundedWidget(
+              height: 750.h,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -89,7 +90,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       function: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => InputsScreen(),
+                            builder: (context) => DescribtiveInfo(),
                           ),
                         );
                       },

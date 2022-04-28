@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_const_constructors_in_immutables
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,10 +8,21 @@ import 'package:graduation_project/shared/shared_components.dart';
 
 import 'fitness_components.dart';
 
-//Todo: Don't forget to create toggling here it's so fucking crucial yasta
+class FitnessScreen extends StatefulWidget {
+  FitnessScreen({Key? key}) : super(key: key);
 
-class FitnessScreen extends StatelessWidget {
-  const FitnessScreen({Key? key}) : super(key: key);
+  @override
+  State<FitnessScreen> createState() => _FitnessScreenState();
+}
+
+class _FitnessScreenState extends State<FitnessScreen> {
+  bool firstIsTapped = true;
+  bool secIsTapped = false;
+  bool thirdIsTapped = false;
+
+  bool isFirstTrueNow = false;
+  bool isSecTrueNow = false;
+  bool isThirdTrueNow = false;
 
   @override
   Widget build(BuildContext context) {
@@ -23,12 +34,14 @@ class FitnessScreen extends StatelessWidget {
       ),
       body: mainContainerWidelySpread(
         child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
           child: Column(
             children: [
               SizedBox(
                 height: 60.h,
               ),
-              roundedContainer(
+              roundedWidget(
+                height: 720.h,
                 child: Column(
                   children: [
                     chooseYourFitnessLevelText(),
@@ -39,55 +52,157 @@ class FitnessScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        determineYourfitnessLevelWidget(),
+                        determineYourfitnessLevelWidget(
+                          onTap: () {
+                            if (isFirstTrueNow) {
+                              setState(() {
+                                firstIsTapped = true;
+                                secIsTapped = false;
+                                thirdIsTapped = false;
+                              });
+                            } else {
+                              setState(() {
+                                firstIsTapped = !firstIsTapped;
+                                secIsTapped = false;
+                                thirdIsTapped = false;
+                              });
+                            }
+                          },
+                          color: firstIsTapped
+                              ? MyColors.kMainLightColor
+                              : MyColors.kSpecialLightGreyColor,
+                        ),
                         determineYourfitnessLevelWidget(
                           height: 140.h,
                           width: 70.w,
-                          color: MyColors.kSpecialLightPrimary,
+                          onTap: () {
+                            if (isSecTrueNow) {
+                              setState(() {
+                                secIsTapped = true;
+                                firstIsTapped = true;
+                                thirdIsTapped = false;
+                              });
+                            } else {
+                              setState(() {
+                                secIsTapped = !secIsTapped;
+                                firstIsTapped = true;
+                                thirdIsTapped = false;
+                              });
+                            }
+                          },
+                          color: secIsTapped
+                              ? MyColors.kMainLightColor
+                              : MyColors.kSpecialLightGreyColor,
                         ),
                         determineYourfitnessLevelWidget(
                           height: 210.h,
                           width: 70.w,
-                          color: MyColors.kSpecialLightPrimary,
+                          onTap: () {
+                            setState(() {
+                              thirdIsTapped = !thirdIsTapped;
+                              firstIsTapped = true;
+                              secIsTapped = true;
+                              isFirstTrueNow = true;
+                              isSecTrueNow = true;
+                            });
+                          },
+                          color: thirdIsTapped
+                              ? MyColors.kMainLightColor
+                              : MyColors.kSpecialLightGreyColor,
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: 10.h,
-                    ),
-                    //* Putting trueWidget(), with 2 other SizedBox inside a Row and using the same ...
-                    //*.. mainAxisAlignment to get the same alignment as the previous Row
-                    //! You will only get the desired shape by maintaining the SizedBoxs' width
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        trueWidget(),
-                        SizedBox(
-                          //*The same width as the previous elements inside the previous Row
-                          //! But I don't need the height
-                          // height: 140.h,
-                          width: 70.w,
-                        ),
-                        //*Same here
-                        SizedBox(
-                          // height: 210.h,
-                          width: 70.w,
-                        ),
+                        if (firstIsTapped &&
+                            secIsTapped == false &&
+                            thirdIsTapped == false)
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 35.h),
+                                child: trueWidget(),
+                              ),
+                            ],
+                          ),
+                        if (secIsTapped && thirdIsTapped == false)
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding:
+                                    EdgeInsets.symmetric(horizontal: 165.h),
+                                child: trueWidget(),
+                              ),
+                            ],
+                          ),
+                        if (thirdIsTapped)
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(left: 300.h),
+                                child: trueWidget(),
+                              ),
+                            ],
+                          ),
                       ],
                     ),
                     SizedBox(
                       height: 20.h,
                     ),
-                    loseWeightText(),
-                    SizedBox(
-                      height: 20.h,
-                    ),
-
-                    longText(),
-                    SizedBox(
-                      height: 30.h,
-                    ),
-
+                    if (!secIsTapped && !thirdIsTapped && firstIsTapped)
+                      Column(
+                        children: [
+                          loseWeightText(text: "Lose Weight"),
+                          SizedBox(
+                            height: 20.h,
+                          ),
+                          longText(
+                            context: context,
+                            text:
+                                "Muscle Building exercises help lose fat\n                  and improve body",
+                          ),
+                          SizedBox(
+                            height: 30.h,
+                          ),
+                        ],
+                      ),
+                    if (secIsTapped && !thirdIsTapped)
+                      Column(
+                        children: [
+                          loseWeightText(text: "Miantain your fitness"),
+                          SizedBox(
+                            height: 20.h,
+                          ),
+                          longText(
+                            context: context,
+                            text:
+                                "Maintaining physical and muscular fitness\n     and maintaining a healthy weight",
+                          ),
+                          SizedBox(
+                            height: 30.h,
+                          ),
+                        ],
+                      ),
+                    if (thirdIsTapped)
+                      Column(
+                        children: [
+                          loseWeightText(text: "Increase muscle strength"),
+                          SizedBox(
+                            height: 20.h,
+                          ),
+                          longText(
+                            context: context,
+                            text:
+                                "Muscular strength exercises help you lift\n    higher weights and thus increase your\n         muscular and physical strength ",
+                          ),
+                          SizedBox(
+                            height: 50.h,
+                          ),
+                        ],
+                      ),
                     defaultButton(
                       function: () {
                         Navigator.of(context).push(

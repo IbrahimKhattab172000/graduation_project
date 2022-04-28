@@ -53,7 +53,7 @@ AppBar simpleAppBar(
           )
         : Container(),
 
-    backgroundColor: appBarColor ?? MyColors.kPrimaryColor,
+    backgroundColor: appBarColor ?? MyColors.kMainLightColor,
     title: Text(
       title ?? "Healthy Life",
       style: TextStyle(fontSize: 25.sp, fontWeight: FontWeight.bold),
@@ -71,15 +71,17 @@ AppBar simpleAppBar(
   );
 }
 
-Container roundedContainer({
+Widget roundedWidget({
   required Widget child,
   double? width,
   double? height,
   Color? color,
   double? radius,
+  bool useBottomRadius = false,
+  EdgeInsets? containerPadding,
 }) {
   return Container(
-    padding: EdgeInsets.all(20.h),
+    padding: containerPadding ?? EdgeInsets.all(20.h),
     width: width ?? double.infinity,
     height: height ?? 650.h,
     decoration: BoxDecoration(
@@ -87,6 +89,12 @@ Container roundedContainer({
       borderRadius: BorderRadius.only(
         topLeft: Radius.circular(radius ?? 30.r),
         topRight: Radius.circular(radius ?? 30.r),
+        bottomLeft: useBottomRadius
+            ? Radius.circular(radius ?? 30.r)
+            : Radius.circular(0),
+        bottomRight: useBottomRadius
+            ? Radius.circular(radius ?? 30.r)
+            : Radius.circular(0),
       ),
     ),
     child: child,
@@ -99,7 +107,7 @@ Widget mainContainerWidelySpread({
   return Container(
     height: double.infinity,
     width: double.infinity,
-    color: MyColors.kPrimaryColor,
+    color: MyColors.kMainLightColor,
     child: child,
   );
 }
@@ -139,7 +147,7 @@ Widget defaultButton({
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(radius ?? 33.r),
-        color: MyColors.kPrimaryColor,
+        color: MyColors.kMainLightColor,
         boxShadow: [
           BoxShadow(
             color: MyColors.kSpecialBetweenWhiteAndGrey,
@@ -178,3 +186,41 @@ Widget textFormField({
     ),
   );
 }
+
+Widget defaultTextFormField({
+  required TextEditingController controller,
+  required TextInputType type,
+  ValueChanged? onSubmit,
+  ValueChanged? onChange,
+  required FormFieldValidator validator,
+  String? lable,
+  IconData? prefix,
+  IconData? suffix,
+  OutlineInputBorder? border,
+  bool isPassword = false,
+  VoidCallback? suffixPressed,
+  GestureTapCallback? onTap,
+  bool isClickable = true,
+  TextStyle? textStyle,
+}) =>
+    TextFormField(
+      controller: controller,
+      keyboardType: type,
+      validator: validator,
+      onFieldSubmitted: onSubmit,
+      onChanged: onChange,
+      onTap: onTap,
+      obscureText: isPassword,
+      enabled: isClickable,
+      decoration: InputDecoration(
+        labelText: lable,
+        border: border,
+        prefixIcon: Icon(prefix),
+        suffixIcon: suffix != null
+            ? IconButton(onPressed: suffixPressed, icon: Icon(suffix))
+            : null,
+      ),
+      textAlign: TextAlign.start,
+      cursorColor: MyColors.kSpecialLightGreyColor,
+      style: textStyle,
+    );

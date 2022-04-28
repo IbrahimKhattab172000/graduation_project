@@ -63,7 +63,7 @@ Widget digitalCode({
   );
 }
 
-Widget columnForMainTextWidgetsOtp() {
+Widget columnForMainTextWidgetsOtp(context) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -72,6 +72,7 @@ Widget columnForMainTextWidgetsOtp() {
         style: TextStyle(
           fontSize: 29.sp,
           fontWeight: FontWeight.w500,
+          color: MyColors.kMaindarkColor,
         ),
       ),
       SizedBox(
@@ -79,10 +80,17 @@ Widget columnForMainTextWidgetsOtp() {
       ),
       Text(
         "Please Enter the 4 digital code sent to your email ",
-        style: TextStyle(
-          fontSize: 19.sp,
-          fontWeight: FontWeight.w400,
-        ),
+        style: Theme.of(context).textTheme.caption!.copyWith(
+              fontSize: 16.sp,
+              fontWeight: FontWeight.w400,
+              color: MyColors.kMaindarkColor,
+            ),
+        // TextStyle(
+        // fontSize: 19.sp,
+        // fontWeight: FontWeight.w400,
+        // color: MyColors.kMaindarkColor,
+
+        // ),
       ),
     ],
   );

@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:graduation_project/screens/layout_screen/layout_screen.dart';
 import 'package:graduation_project/shared/shared_components.dart';
 
 import 'new_password_components.dart';
@@ -19,6 +20,7 @@ class NewPasswordScreen extends StatelessWidget {
       ),
       body: mainContainerWidelySpread(
         child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
           child: Column(
             children: [
               SizedBox(
@@ -28,11 +30,11 @@ class NewPasswordScreen extends StatelessWidget {
               SizedBox(
                 height: 30.h,
               ),
-              roundedContainer(
-                height: 428.h,
+              roundedWidget(
+                height: 720.h,
                 child: Column(
                   children: [
-                    columnForMainTextWidgetsNewPassword(),
+                    columnForMainTextWidgetsNewPassword(context),
                     SizedBox(
                       height: 30.h,
                     ),
@@ -53,7 +55,12 @@ class NewPasswordScreen extends StatelessWidget {
                       height: 30.h,
                     ),
                     defaultButton(
-                      function: () {},
+                      function: () {
+                        navigateTo(
+                          context,
+                          LayoutScreen(),
+                        );
+                      },
                       text: "Submit",
                     ),
                   ],
@@ -66,3 +73,5 @@ class NewPasswordScreen extends StatelessWidget {
     );
   }
 }
+
+

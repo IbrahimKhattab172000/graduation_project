@@ -1,16 +1,494 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_const_constructors_in_immutables
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:graduation_project/constants.dart';
 
-class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+import 'profile_components.dart';
+// import 'package:table_calendar/table_calendar.dart';
+
+class ProfileScreen extends StatefulWidget {
+  ProfileScreen({Key? key}) : super(key: key);
+
+  @override
+  _ProfileScreenState createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  // Map<DateTime, List<Event>> selectedEvents;
+  // CalendarFormat format = CalendarFormat.month;
+  DateTime selectedDay = DateTime.now();
+  DateTime focusedDay = DateTime.now();
+
+  // TextEditingController _eventController = TextEditingController();
+  // @override
+  // void initState() {
+  //   selectedEvents = {};
+
+  //   super.initState();
+  // }
+
+  // List<Event> _getEventsfromDay(DateTime date) {
+  //   return selectedEvents[date] ?? [];
+  // }
+
+  // @override
+  // void dispose() {
+  //   _eventController.dispose();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text("Profile Screen"),
+    SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+        extendBodyBehindAppBar: true,
+        body: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
+          child: Column(
+            children: [
+              profileAndCover(),
+              SizedBox(
+                height: 80.h,
+              ),
+              userName(),
+              SizedBox(
+                height: 4.h,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  detailsWidget(
+                    value: '162',
+                    text: 'Height',
+                    iconData: Icons.height,
+                    context: context,
+                  ),
+                  detailsWidget(
+                    value: '60',
+                    text: 'Weight',
+                    iconData: Icons.monitor_weight,
+                    context: context,
+                  ),
+                  detailsWidget(
+                    value: '21',
+                    text: 'age',
+                    iconData: Icons.cake,
+                    context: context,
+                  ),
+
+                  // Padding(
+                  //   padding: const EdgeInsets.all(8.0),
+                  //   child: Container(
+                  //     height: 110,
+                  //     width: 120,
+                  //     decoration: BoxDecoration(
+                  //       color: Color(0xFFE4E4E4),
+                  //       borderRadius: BorderRadius.circular(50),
+                  //     ),
+                  //     child: Row(children: [
+                  //       SizedBox(
+                  //         width: 8,
+                  //       ),
+                  //       Icon(
+                  //         Icons.line_weight,
+                  //         size: 33,
+                  //       ),
+                  //       Column(
+                  //         children: [
+                  //           SizedBox(
+                  //             height: 20,
+                  //           ),
+                  //           Text(
+                  //             'weight',
+                  //             style: TextStyle(
+                  //                 fontWeight: FontWeight.bold, fontSize: 18),
+                  //           ),
+                  //           SizedBox(
+                  //             height: 10,
+                  //           ),
+                  //           Text(
+                  //             '60',
+                  //             style: TextStyle(
+                  //                 fontWeight: FontWeight.bold, fontSize: 18),
+                  //           ),
+                  //         ],
+                  //       )
+                  //     ]),
+                  //   ),
+                  // ),
+                  // Padding(
+                  //   padding: const EdgeInsets.all(8.0),
+                  //   child: Container(
+                  //     height: 110,
+                  //     width: 120,
+                  //     decoration: BoxDecoration(
+                  //       color: Color(0xFFE4E4E4),
+                  //       borderRadius: BorderRadius.circular(50),
+                  //     ),
+                  //     child: Row(children: [
+                  //       SizedBox(
+                  //         width: 10,
+                  //       ),
+                  //       Icon(
+                  //         Icons.date_range_outlined,
+                  //         size: 33,
+                  //       ),
+                  //       SizedBox(
+                  //         width: 7,
+                  //       ),
+                  //       Column(
+                  //         children: [
+                  //           SizedBox(
+                  //             height: 20,
+                  //           ),
+                  //           Text(
+                  //             'Age',
+                  //             style: TextStyle(
+                  //                 fontWeight: FontWeight.bold, fontSize: 18),
+                  //           ),
+                  //           SizedBox(
+                  //             height: 10,
+                  //           ),
+                  //           Text(
+                  //             '21',
+                  //             style: TextStyle(
+                  //                 fontWeight: FontWeight.bold, fontSize: 18),
+                  //           ),
+                  //         ],
+                  //       )
+                  //     ]),
+                  //   ),
+                  // ),
+                ],
+              ),
+              SizedBox(
+                height: 5.h,
+              ),
+              getPremium(),
+              Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    Container(
+                      height: 45,
+                      decoration: BoxDecoration(
+                          color: MyColors.kSpecialLightGreyColor,
+                          borderRadius: BorderRadius.circular(25.0)),
+                      child: TabBar(
+                        indicator: BoxDecoration(
+                            color: Color(0xFF1F506E),
+                            borderRadius: BorderRadius.circular(25.0)),
+                        labelColor: Colors.white,
+                        unselectedLabelColor: Colors.black,
+                        tabs: const [
+                          Tab(
+                            text: 'Week',
+                          ),
+                          Tab(
+                            text: 'Month',
+                          ),
+                          Tab(
+                            text: 'Year',
+                          ),
+                        ],
+                      ),
+                    ),
+                    // Container(
+                    //   height: 400,
+                    //   width: double.maxFinite,
+                    //   child: TabBarView(
+                    //     children: [
+                    //       Column(
+                    //         children: [
+                    //           TableCalendar(
+                    //             focusedDay: selectedDay,
+                    //             firstDay: DateTime(1990),
+                    //             lastDay: DateTime(2050),
+                    //             calendarFormat: format,
+                    //             onFormatChanged: (CalendarFormat _format) {
+                    //               setState(() {
+                    //                 format = _format;
+                    //               });
+                    //             },
+                    //             startingDayOfWeek: StartingDayOfWeek.sunday,
+                    //             daysOfWeekVisible: true,
+
+                    //             //Day Changed
+                    //             onDaySelected:
+                    //                 (DateTime selectDay, DateTime focusDay) {
+                    //               setState(() {
+                    //                 selectedDay = selectDay;
+                    //                 focusedDay = focusDay;
+                    //               });
+                    //               print(focusedDay);
+                    //             },
+                    //             selectedDayPredicate: (DateTime date) {
+                    //               return isSameDay(selectedDay, date);
+                    //             },
+
+                    //             eventLoader: _getEventsfromDay,
+
+                    //             //To style the Calendar
+                    //             calendarStyle: CalendarStyle(
+                    //               isTodayHighlighted: true,
+                    //               selectedDecoration: BoxDecoration(
+                    //                 color: Colors.blue,
+                    //                 shape: BoxShape.rectangle,
+                    //                 borderRadius: BorderRadius.circular(5.0),
+                    //               ),
+                    //               selectedTextStyle:
+                    //                   TextStyle(color: Colors.white),
+                    //               todayDecoration: BoxDecoration(
+                    //                 color: Colors.purpleAccent,
+                    //                 shape: BoxShape.rectangle,
+                    //                 borderRadius: BorderRadius.circular(5.0),
+                    //               ),
+                    //               defaultDecoration: BoxDecoration(
+                    //                 shape: BoxShape.rectangle,
+                    //                 borderRadius: BorderRadius.circular(5.0),
+                    //               ),
+                    //               weekendDecoration: BoxDecoration(
+                    //                 shape: BoxShape.rectangle,
+                    //                 borderRadius: BorderRadius.circular(5.0),
+                    //               ),
+                    //             ),
+                    //             headerStyle: HeaderStyle(
+                    //               formatButtonVisible: true,
+                    //               titleCentered: true,
+                    //               formatButtonShowsNext: false,
+                    //               formatButtonDecoration: BoxDecoration(
+                    //                 color: Colors.blue,
+                    //                 borderRadius: BorderRadius.circular(5.0),
+                    //               ),
+                    //               formatButtonTextStyle: TextStyle(
+                    //                 color: Colors.white,
+                    //               ),
+                    //             ),
+                    //           ),
+                    //         ],
+                    //       ),
+                    //       ..._getEventsfromDay(selectedDay).map(
+                    //         (Event event) => ListTile(
+                    //           title: Text(
+                    //             event.title,
+                    //           ),
+                    //         ),
+                    //       ),
+                    //       Column(
+                    //         children: [
+                    //           TableCalendar(
+                    //             focusedDay: selectedDay,
+                    //             firstDay: DateTime(1990),
+                    //             lastDay: DateTime(2050),
+                    //             calendarFormat: format,
+                    //             onFormatChanged: (CalendarFormat _format) {
+                    //               setState(() {
+                    //                 format = _format;
+                    //               });
+                    //             },
+                    //             startingDayOfWeek: StartingDayOfWeek.sunday,
+                    //             daysOfWeekVisible: true,
+
+                    //             //Day Changed
+                    //             onDaySelected:
+                    //                 (DateTime selectDay, DateTime focusDay) {
+                    //               setState(() {
+                    //                 selectedDay = selectDay;
+                    //                 focusedDay = focusDay;
+                    //               });
+                    //               print(focusedDay);
+                    //             },
+                    //             selectedDayPredicate: (DateTime date) {
+                    //               return isSameDay(selectedDay, date);
+                    //             },
+
+                    //             eventLoader: _getEventsfromDay,
+
+                    //             //To style the Calendar
+                    //             calendarStyle: CalendarStyle(
+                    //               isTodayHighlighted: true,
+                    //               selectedDecoration: BoxDecoration(
+                    //                 color: Colors.blue,
+                    //                 shape: BoxShape.rectangle,
+                    //                 borderRadius: BorderRadius.circular(5.0),
+                    //               ),
+                    //               selectedTextStyle:
+                    //                   TextStyle(color: Colors.white),
+                    //               todayDecoration: BoxDecoration(
+                    //                 color: Colors.purpleAccent,
+                    //                 shape: BoxShape.rectangle,
+                    //                 borderRadius: BorderRadius.circular(5.0),
+                    //               ),
+                    //               defaultDecoration: BoxDecoration(
+                    //                 shape: BoxShape.rectangle,
+                    //                 borderRadius: BorderRadius.circular(5.0),
+                    //               ),
+                    //               weekendDecoration: BoxDecoration(
+                    //                 shape: BoxShape.rectangle,
+                    //                 borderRadius: BorderRadius.circular(5.0),
+                    //               ),
+                    //             ),
+                    //             headerStyle: HeaderStyle(
+                    //               formatButtonVisible: true,
+                    //               titleCentered: true,
+                    //               formatButtonShowsNext: false,
+                    //               formatButtonDecoration: BoxDecoration(
+                    //                 color: Colors.blue,
+                    //                 borderRadius: BorderRadius.circular(5.0),
+                    //               ),
+                    //               formatButtonTextStyle: TextStyle(
+                    //                 color: Colors.white,
+                    //               ),
+                    //             ),
+                    //           ),
+                    //         ],
+                    //       ),
+                    //       ..._getEventsfromDay(selectedDay).map(
+                    //         (Event event) => ListTile(
+                    //           title: Text(
+                    //             event.title,
+                    //           ),
+                    //         ),
+                    //       ),
+                    //       Column(
+                    //         children: [
+                    //           TableCalendar(
+                    //             focusedDay: selectedDay,
+                    //             firstDay: DateTime(1990),
+                    //             lastDay: DateTime(2050),
+                    //             calendarFormat: format,
+                    //             onFormatChanged: (CalendarFormat _format) {
+                    //               setState(() {
+                    //                 format = _format;
+                    //               });
+                    //             },
+                    //             startingDayOfWeek: StartingDayOfWeek.sunday,
+                    //             daysOfWeekVisible: true,
+
+                    //             //Day Changed
+                    //             onDaySelected:
+                    //                 (DateTime selectDay, DateTime focusDay) {
+                    //               setState(() {
+                    //                 selectedDay = selectDay;
+                    //                 focusedDay = focusDay;
+                    //               });
+                    //               print(focusedDay);
+                    //             },
+                    //             selectedDayPredicate: (DateTime date) {
+                    //               return isSameDay(selectedDay, date);
+                    //             },
+
+                    //             eventLoader: _getEventsfromDay,
+
+                    //             //To style the Calendar
+                    //             calendarStyle: CalendarStyle(
+                    //               isTodayHighlighted: true,
+                    //               selectedDecoration: BoxDecoration(
+                    //                 color: Colors.blue,
+                    //                 shape: BoxShape.rectangle,
+                    //                 borderRadius: BorderRadius.circular(5.0),
+                    //               ),
+                    //               selectedTextStyle:
+                    //                   TextStyle(color: Colors.white),
+                    //               todayDecoration: BoxDecoration(
+                    //                 color: Colors.purpleAccent,
+                    //                 shape: BoxShape.rectangle,
+                    //                 borderRadius: BorderRadius.circular(5.0),
+                    //               ),
+                    //               defaultDecoration: BoxDecoration(
+                    //                 shape: BoxShape.rectangle,
+                    //                 borderRadius: BorderRadius.circular(5.0),
+                    //               ),
+                    //               weekendDecoration: BoxDecoration(
+                    //                 shape: BoxShape.rectangle,
+                    //                 borderRadius: BorderRadius.circular(5.0),
+                    //               ),
+                    //             ),
+                    //             headerStyle: HeaderStyle(
+                    //               formatButtonVisible: true,
+                    //               titleCentered: true,
+                    //               formatButtonShowsNext: false,
+                    //               formatButtonDecoration: BoxDecoration(
+                    //                 color: Colors.blue,
+                    //                 borderRadius: BorderRadius.circular(5.0),
+                    //               ),
+                    //               formatButtonTextStyle: TextStyle(
+                    //                 color: Colors.white,
+                    //               ),
+                    //             ),
+                    //           ),
+                    //         ],
+                    //       ),
+                    //       ..._getEventsfromDay(selectedDay).map(
+                    //         (Event event) => ListTile(
+                    //           title: Text(
+                    //             event.title,
+                    //           ),
+                    //         ),
+                    //       ),
+                    //     ],
+                    //   ),
+                    // ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+        // floatingActionButton: FloatingActionButton.extended(
+        //   onPressed: () => showDialog(
+        //     context: context,
+        //     builder: (context) => AlertDialog(
+        //       title: Text("Add Event"),
+        //       content: TextFormField(
+        //         controller: _eventController,
+        //       ),
+        //       actions: [
+        //         TextButton(
+        //           child: Text("Cancel"),
+        //           onPressed: () => Navigator.pop(context),
+        //         ),
+        //         TextButton(
+        //           child: Text("Ok"),
+        //           onPressed: () {
+        //             if (_eventController.text.isEmpty) {
+
+        //             } else {
+        //               if (selectedEvents[selectedDay] != null) {
+        //                 selectedEvents[selectedDay].add(
+        //                   Event(title: _eventController.text),
+        //                 );
+        //               } else {
+        //                 selectedEvents[selectedDay] = [
+        //                   Event(title: _eventController.text)
+        //                 ];
+        //               }
+
+        //             }
+        //             Navigator.pop(context);
+        //             _eventController.clear();
+        //             setState((){});
+        //             return;
+        //           },
+        //         ),
+        //       ],
+        //     ),
+        //   ),
+        //   label: Text("Add Event"),
+        //   icon: Icon(Icons.add),
+        // ),
       ),
     );
   }
 }
+// class Event {
+//   final String title;
+//   Event({this.title});
+
+//   String toString() => this.title;
+// }

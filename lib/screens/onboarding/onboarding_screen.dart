@@ -20,7 +20,7 @@ class OnboardingScreen extends StatelessWidget {
         title: Text(
           "Healthy Life",
           style: TextStyle(
-            color: MyColors.kPrimaryColor,
+            color: MyColors.kMainLightColor,
             fontSize: 35.sp,
           ),
         ),
@@ -38,7 +38,7 @@ class OnboardingScreen extends StatelessWidget {
                 width: 50.w,
                 height: 35.h,
                 decoration: BoxDecoration(
-                  color: MyColors.kPrimaryColor,
+                  color: MyColors.kMainLightColor,
                   borderRadius: BorderRadius.circular(8.r),
                 ),
                 child: Center(

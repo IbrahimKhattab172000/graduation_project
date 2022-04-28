@@ -35,7 +35,7 @@ class _InitialScreenState extends State<InitialScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: MyColors.kPrimaryColor,
+        backgroundColor: MyColors.kMaindarkColor,
         centerTitle: true,
         elevation: 0,
       ),
@@ -47,8 +47,8 @@ class _InitialScreenState extends State<InitialScreen> {
               begin: Alignment.topRight,
               end: Alignment.bottomRight,
               colors: [
-                MyColors.kPrimaryColor,
-                MyColors.kLightPrimaryColor,
+                MyColors.kMaindarkColor,
+                MyColors.kMainLightColor,
               ]),
         ),
         child: Padding(

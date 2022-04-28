@@ -3,24 +3,33 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../constants.dart';
 
-Widget longText() {
+Widget longText({required String text, context}) {
   return Center(
     child: Text(
-      "Muscle Building exercises help lose fat\n                  and improve body",
-      style: TextStyle(
-        fontSize: 16.sp,
-        fontWeight: FontWeight.w500,
-      ),
+      text,
+      style: Theme.of(context).textTheme.caption!.copyWith(
+            fontSize: 16.sp,
+            fontWeight: FontWeight.w500,
+            color: MyColors.kMaindarkColor,
+          ),
+      // TextStyle(
+      // fontSize: 16.sp,
+      // fontWeight: FontWeight.w500,
+      // color: MyColors.kMaindarkColor,
+      // ),
     ),
   );
 }
 
-Widget loseWeightText() {
+Widget loseWeightText({
+  required String text,
+}) {
   return Text(
-    "Lose Weight",
+    text,
     style: TextStyle(
       fontSize: 26.sp,
       fontWeight: FontWeight.w500,
+      color: MyColors.kMaindarkColor,
     ),
   );
 }
@@ -48,13 +57,17 @@ Widget determineYourfitnessLevelWidget({
   double? width,
   double? radius,
   Color? color,
+  required GestureTapCallback onTap,
 }) {
-  return Container(
-    height: height ?? 70.h,
-    width: width ?? 70.w,
-    decoration: BoxDecoration(
-      color: color ?? MyColors.kSpecialPrimary,
-      borderRadius: BorderRadius.circular(radius ?? 22.r),
+  return InkWell(
+    onTap: onTap,
+    child: Container(
+      height: height ?? 70.h,
+      width: width ?? 70.w,
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.circular(radius ?? 22.r),
+      ),
     ),
   );
 }
@@ -64,7 +77,8 @@ Text chooseYourFitnessLevelText() {
     "Choose your fitness level",
     style: TextStyle(
       fontSize: 30.sp,
-      fontWeight: FontWeight.w400,
+      fontWeight: FontWeight.w500,
+      color: MyColors.kMaindarkColor,
     ),
   );
 }

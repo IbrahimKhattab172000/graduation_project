@@ -20,12 +20,14 @@ class InjuriesConditionScreen extends StatelessWidget {
       ),
       body: mainContainerWidelySpread(
         child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
           child: Column(
             children: [
               SizedBox(
                 height: 60.h,
               ),
-              roundedContainer(
+              roundedWidget(
+                height: 720.h,
                 child: Column(
                   children: [
                     SizedBox(
@@ -35,7 +37,7 @@ class InjuriesConditionScreen extends StatelessWidget {
                     SizedBox(
                       height: 20.h,
                     ),
-                    extraInputMainWidget(
+                    ExtraInputMainWidget(
                       width: 282.w,
                       text: "shoulder joint osteoarthritis",
                     ),
@@ -45,11 +47,11 @@ class InjuriesConditionScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        extraInputMainWidget(
+                        ExtraInputMainWidget(
                           width: 174.w,
                           text: "Biceps tendinitis",
                         ),
-                        extraInputMainWidget(
+                        ExtraInputMainWidget(
                           width: 138.w,
                           text: "Ankle sprain",
                         ),
@@ -58,12 +60,14 @@ class InjuriesConditionScreen extends StatelessWidget {
                     SizedBox(
                       height: 5.h,
                     ),
-                    extraInputMainWidget(
-                        width: 228.w, text: "rotator cuff tendinitis"),
+                    ExtraInputMainWidget(
+                      width: 228.w,
+                      text: "rotator cuff tendinitis",
+                    ),
                     SizedBox(
                       height: 5.h,
                     ),
-                    extraInputMainWidget(
+                    ExtraInputMainWidget(
                       width: 312.w,
                       text: "Recurrent shoulder dislocation",
                     ),
@@ -73,11 +77,11 @@ class InjuriesConditionScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        extraInputMainWidget(
+                        ExtraInputMainWidget(
                           width: 146.w,
                           text: "Tennis Elbow",
                         ),
-                        extraInputMainWidget(
+                        ExtraInputMainWidget(
                           width: 160.w,
                           text: "Calf muscle tear",
                         ),
@@ -86,19 +90,19 @@ class InjuriesConditionScreen extends StatelessWidget {
                     SizedBox(
                       height: 5.h,
                     ),
-                    extraInputMainWidget(
+                    ExtraInputMainWidget(
                       width: 192.w,
                       text: "Lower back pains",
                     ),
                     SizedBox(
                       height: 5.h,
                     ),
-                    extraInputMainWidget(
+                    ExtraInputMainWidget(
                       width: 208.w,
                       text: "Knee osteoarthritis",
                     ),
                     SizedBox(
-                      height: 10.h,
+                      height: 50.h,
                     ),
                     defaultButton(
                       function: () {

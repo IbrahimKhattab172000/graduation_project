@@ -139,7 +139,7 @@ class _OnboardingBodyState extends State<OnboardingBody> {
       width: currentPage == index ? 10.w : 5.w,
       decoration: BoxDecoration(
         color: currentPage == index
-            ? MyColors.kPrimaryColor
+            ? MyColors.kMainLightColor
             : MyColors.kSpecialBetweenWhiteAndGrey,
         borderRadius: BorderRadius.circular(10.r),
       ),

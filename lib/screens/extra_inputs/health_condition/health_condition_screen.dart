@@ -20,12 +20,14 @@ class HealthConditionScreen extends StatelessWidget {
       ),
       body: mainContainerWidelySpread(
         child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
           child: Column(
             children: [
               SizedBox(
                 height: 60.h,
               ),
-              roundedContainer(
+              roundedWidget(
+                height: 720.h,
                 child: Column(
                   children: [
                     SizedBox(
@@ -36,7 +38,7 @@ class HealthConditionScreen extends StatelessWidget {
                     SizedBox(
                       height: 20.h,
                     ),
-                    extraInputMainWidget(
+                    ExtraInputMainWidget(
                       width: 210.w,
                       text: "Iactose intolerance",
                     ),
@@ -46,11 +48,11 @@ class HealthConditionScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        extraInputMainWidget(
+                        ExtraInputMainWidget(
                           width: 187.w,
                           text: "High cholesterol",
                         ),
-                        extraInputMainWidget(
+                        ExtraInputMainWidget(
                           width: 81.w,
                           text: "PCO",
                         ),
@@ -59,12 +61,12 @@ class HealthConditionScreen extends StatelessWidget {
                     SizedBox(
                       height: 5.h,
                     ),
-                    extraInputMainWidget(
+                    ExtraInputMainWidget(
                         width: 193.w, text: "insulin resistance"),
                     SizedBox(
                       height: 5.h,
                     ),
-                    extraInputMainWidget(
+                    ExtraInputMainWidget(
                       width: 222.w,
                       text: "autoimmune disease",
                     ),
@@ -74,11 +76,11 @@ class HealthConditionScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        extraInputMainWidget(
+                        ExtraInputMainWidget(
                           width: 146.w,
                           text: "favism(G6PD)",
                         ),
-                        extraInputMainWidget(
+                        ExtraInputMainWidget(
                           width: 150.w,
                           text: "Hypothyroidism",
                         ),
@@ -90,11 +92,11 @@ class HealthConditionScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        extraInputMainWidget(
+                        ExtraInputMainWidget(
                           width: 160.w,
                           text: "Diabetes type 2",
                         ),
-                        extraInputMainWidget(
+                        ExtraInputMainWidget(
                           width: 130.w,
                           text: "hypertension",
                         ),
@@ -106,18 +108,18 @@ class HealthConditionScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        extraInputMainWidget(
+                        ExtraInputMainWidget(
                           width: 104.w,
                           text: "Pregnant",
                         ),
-                        extraInputMainWidget(
+                        ExtraInputMainWidget(
                           width: 135.w,
                           text: "Gastric Sleeve",
                         ),
                       ],
                     ),
                     SizedBox(
-                      height: 10.h,
+                      height: 50.h,
                     ),
                     defaultButton(
                       function: () {

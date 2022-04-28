@@ -22,10 +22,11 @@ class _LoginScreenState extends State<LoginScreen> {
       appBar: simpleAppBar(showLeading: false),
       body: mainContainerWidelySpread(
         child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
           child: Padding(
             padding: EdgeInsets.only(top: 75.h),
-            child: roundedContainer(
-              height: 588.h,
+            child: roundedWidget(
+              height: 690.h,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

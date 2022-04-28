@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:graduation_project/constants.dart';
 
 Widget securityWidget() {
   return Container(
@@ -14,7 +15,7 @@ Widget securityWidget() {
   );
 }
 
-Widget columnForMainTextWidgetsNewPassword() {
+Widget columnForMainTextWidgetsNewPassword(context) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -23,17 +24,23 @@ Widget columnForMainTextWidgetsNewPassword() {
         style: TextStyle(
           fontSize: 29.sp,
           fontWeight: FontWeight.w500,
+          color: MyColors.kMaindarkColor,
         ),
       ),
       SizedBox(
         height: 10.h,
       ),
       Text(
-        "Please Enter your new password",
-        style: TextStyle(
-          fontSize: 19.sp,
-          fontWeight: FontWeight.w400,
-        ),
+        "      Please Enter your new password",
+        style: Theme.of(context).textTheme.caption!.copyWith(
+              fontSize: 16.sp,
+              fontWeight: FontWeight.w400,
+              color: MyColors.kMaindarkColor,
+            ),
+        // TextStyle(
+        //   fontSize: 19.sp,
+        //   fontWeight: FontWeight.w400,
+        // ),
       ),
     ],
   );

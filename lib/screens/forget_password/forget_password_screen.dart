@@ -20,6 +20,7 @@ class ForgetPassword extends StatelessWidget {
       ),
       body: mainContainerWidelySpread(
         child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
           child: Column(
             children: [
               SizedBox(
@@ -31,7 +32,7 @@ class ForgetPassword extends StatelessWidget {
               SizedBox(
                 height: 30.h,
               ),
-              roundedContainer(
+              roundedWidget(
                 height: 428.h,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

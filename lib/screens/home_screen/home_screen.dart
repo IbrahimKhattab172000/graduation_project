@@ -22,7 +22,7 @@ class HomeScreen extends StatelessWidget {
         leadingIcon: Icons.menu,
       ),
       body: Container(
-        color: MyColors.kPrimaryColor,
+        color: MyColors.kMainLightColor,
         height: double.infinity,
         width: double.infinity,
         child: SingleChildScrollView(
