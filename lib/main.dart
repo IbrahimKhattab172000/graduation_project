@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ///* Using ScreenUtilInit to handle all sorts of responsivity
+    ///* Using ScreenUtilInit to handle all sorts of responsivety
 
     return ScreenUtilInit(
       designSize: Size(375, 838),
@@ -25,6 +25,9 @@ class MyApp extends StatelessWidget {
       builder: () => MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Healthy life',
+        theme: ThemeData(
+          fontFamily: "Dosis",
+        ),
         builder: (context, widget) {
           ScreenUtil.setContext(context);
           return MediaQuery(

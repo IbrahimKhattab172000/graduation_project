@@ -26,7 +26,7 @@ Widget helloUserPart() {
 
 Widget exerciseTabBarItem({required Widget widget}) {
   return Container(
-    height: 50.h,
+    height: 60.h,
     width: 120.w,
     padding: EdgeInsets.all(5.w),
     child: Center(child: widget),
