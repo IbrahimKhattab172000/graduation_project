@@ -39,6 +39,10 @@ dependencies:
   smooth_page_indicator: ^1.0.0+2
   curved_navigation_bar: ^1.0.3 
   table_calendar: ^3.0.5
+  camera: ^0.9.4+21
+  tflite: ^1.1.1
+  font_awesome_flutter: ^10.1.0
+  line_awesome_flutter: ^2.0.0
 
 
 
@@ -67,6 +71,10 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
+    - assets/images/tensorflow_images/
+    - assets/posenet_mv1_075_float_from_checkpoints.tflite
+
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

@@ -1,6 +1,5 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables, must_be_immutable
+// ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables, must_be_immutable, body_might_complete_normally_nullable
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/screens/fitness_level/fitness_screen.dart';

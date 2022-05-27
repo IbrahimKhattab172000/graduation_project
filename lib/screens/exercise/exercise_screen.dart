@@ -5,6 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/shared/shared_components.dart';
 
 import '../../constants.dart';
+import '../../main.dart';
+import '../../tensorflow/main_screen.dart';
 import 'exercise_components.dart';
 
 class ExerciseScreen extends StatefulWidget {
@@ -71,7 +73,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                                         size: 20.w,
                                       ),
                                       Padding(
-                                        padding: const EdgeInsets.all(8.0),
+                                        padding: EdgeInsets.all(5.0.h),
                                         child: Text(
                                           "States",
                                           style: TextStyle(
@@ -95,7 +97,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                                         size: 20.w,
                                       ),
                                       Padding(
-                                        padding: const EdgeInsets.all(8.0),
+                                        padding: EdgeInsets.all(5.0.h),
                                         child: Text(
                                           "Muscles",
                                           style: TextStyle(
@@ -112,7 +114,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                           ),
                         ),
                         Container(
-                          height: 400.h, //height of TabBarView
+                          height: 550.h, //height of TabBarView
                           decoration: BoxDecoration(),
                           child: TabBarView(
                             physics: BouncingScrollPhysics(),
@@ -140,7 +142,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
   Widget firstExerciseTabBarWidget() {
     return Container(
       padding: EdgeInsets.all(15.h),
-      margin: EdgeInsets.only(top: 10.h),
+      margin: EdgeInsets.only(top: 50.h),
       child: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         child: Column(
@@ -337,52 +339,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
     return Container(
       child: Column(
         children: [
-          Container(
-              margin: EdgeInsets.all(13.h),
-              padding: EdgeInsets.all(5.h),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.r),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  InkWell(
-                    onTap: () {
-                      controller.val1 = true;
-                      controller.val2 = false;
-                      setState(() {});
-                    },
-                    child: frontAndBackWidget(
-                      color: controller.val1
-                          ? MyColors.kMainLightColor
-                          : Colors.white,
-                      text: 'Front',
-                      textColor: controller.val1
-                          ? Colors.white
-                          : MyColors.kMainLightColor,
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      controller.val2 = true;
-                      controller.val1 = false;
-                      setState(() {});
-                    },
-                    child: frontAndBackWidget(
-                      color: controller.val2
-                          ? MyColors.kMainLightColor
-                          : Colors.white,
-                      text: 'back',
-                      textColor: controller.val2
-                          ? Colors.white
-                          : MyColors.kMainLightColor,
-                    ),
-                  ),
-                ],
-              )),
-          controller.val1
-              ? bodyWidget(imageSrc: 'assets/images/sketlonefront.png')
-              : bodyWidget(imageSrc: 'assets/images/sketloneback.png'),
+          Expanded(child: MainScreen(cameras!)),
         ],
       ),
     );
@@ -394,3 +351,51 @@ class Controller {
   bool val1 = true;
   bool val2 = false;
 }
+
+//*Old container before adding the model
+// Container(
+//               margin: EdgeInsets.all(13.h),
+//               padding: EdgeInsets.all(5.h),
+//               decoration: BoxDecoration(
+//                 borderRadius: BorderRadius.circular(10.r),
+//               ),
+//               child: Row(
+//                 mainAxisAlignment: MainAxisAlignment.spaceAround,
+//                 children: [
+//                   InkWell(
+//                     onTap: () {
+//                       controller.val1 = true;
+//                       controller.val2 = false;
+//                       setState(() {});
+//                     },
+//                     child: frontAndBackWidget(
+//                       color: controller.val1
+//                           ? MyColors.kMainLightColor
+//                           : Colors.white,
+//                       text: 'Front',
+//                       textColor: controller.val1
+//                           ? Colors.white
+//                           : MyColors.kMainLightColor,
+//                     ),
+//                   ),
+//                   InkWell(
+//                     onTap: () {
+//                       controller.val2 = true;
+//                       controller.val1 = false;
+//                       setState(() {});
+//                     },
+//                     child: frontAndBackWidget(
+//                       color: controller.val2
+//                           ? MyColors.kMainLightColor
+//                           : Colors.white,
+//                       text: 'back',
+//                       textColor: controller.val2
+//                           ? Colors.white
+//                           : MyColors.kMainLightColor,
+//                     ),
+//                   ),
+//                 ],
+//               )),
+//           controller.val1
+//               ? bodyWidget(imageSrc: 'assets/images/sketlonefront.png')
+//               : bodyWidget(imageSrc: 'assets/images/sketloneback.png'),

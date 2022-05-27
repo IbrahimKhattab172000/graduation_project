@@ -1,13 +1,24 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, avoid_print, prefer_void_to_null
 
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:graduation_project/constants.dart';
+// import 'package:graduation_project/constants.dart';
 import 'package:graduation_project/screens/initial_screen.dart';
 
-import 'screens/home_screen/home_screen.dart';
+import 'tensorflow/main_screen.dart';
 
-void main() {
+// import 'screens/home_screen/home_screen.dart';
+
+List<CameraDescription>? cameras;
+
+Future<Null> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  try {
+    cameras = await availableCameras();
+  } on CameraException catch (e) {
+    print('Error: $e.code\nError Message: $e.message');
+  }
   runApp(MyApp());
 }
 
@@ -42,6 +53,11 @@ class MyApp extends StatelessWidget {
         //     primarySwatch: Colors.blue,
         //   ),
         // ),
+
+        routes: {
+          MainScreen.id: (context) => MainScreen(cameras!),
+          //DemoScreen.id: (context) => DemoScreen(),
+        },
       ),
     );
   }
