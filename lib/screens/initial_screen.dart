@@ -1,10 +1,11 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'dart:async';
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:graduation_project/screens/layout_screen/layout_screen.dart';
 import 'package:graduation_project/screens/onboarding/onboarding_screen.dart';
 
 import '../constants.dart';
@@ -25,7 +26,24 @@ class _InitialScreenState extends State<InitialScreen> {
       Duration(seconds: 5),
       () => Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => OnboardingScreen(),
+          builder: (context) => StreamBuilder<User?>(
+              stream: FirebaseAuth.instance.authStateChanges(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(
+                    child: LinearProgressIndicator(),
+                  );
+                }
+                if (snapshot.hasError) {
+                  return Center(
+                    child: Text("Something went wrong!"),
+                  );
+                } else if (snapshot.hasData) {
+                  return LayoutScreen();
+                } else {
+                  return OnboardingScreen();
+                }
+              }),
         ),
       ),
     );

@@ -84,9 +84,11 @@ Widget getPremium() {
   );
 }
 
-Widget userName() {
+Widget userName({
+  required String username,
+}) {
   return Text(
-    'User Name',
+    username,
     style: TextStyle(fontWeight: FontWeight.w600, fontSize: 21.sp),
   );
 }

@@ -1,11 +1,14 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_const_constructors_in_immutables, annotate_overrides, avoid_print, sized_box_for_whitespace, prefer_final_fields, unnecessary_this
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/constants.dart';
+import 'package:graduation_project/screens/login/login_screen.dart';
 import 'package:table_calendar/table_calendar.dart';
 
+import '../../shared/shared_components.dart';
 import 'profile_components.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -43,6 +46,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+    final user = FirebaseAuth.instance.currentUser!;
+
     return DefaultTabController(
       length: 3,
       child: Scaffold(
@@ -55,7 +60,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
               SizedBox(
                 height: 80.h,
               ),
-              userName(),
+              userName(username: "${user.email!}"),
+              SizedBox(height: 10.h),
+              defaultButton(
+                function: () async {
+                  await FirebaseAuth.instance.signOut();
+                  navigateAndFinish(context, LoginScreen());
+                },
+                height: 50.h,
+                width: 100.w,
+                text: "Sign Out >",
+              ),
               SizedBox(
                 height: 4.h,
               ),

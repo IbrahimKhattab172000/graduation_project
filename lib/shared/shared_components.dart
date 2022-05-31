@@ -165,6 +165,10 @@ Widget textFormField({
   required Widget prefixWidget,
   Widget? suffixWidget,
   bool isPassword = false,
+  TextEditingController? controller,
+  ValueChanged? onFieldSubmitted,
+  FormFieldValidator? validator,
+
   //  IconData? icon,
 }) {
   return Material(
@@ -173,6 +177,9 @@ Widget textFormField({
     shadowColor: MyColors.kLightGray,
     child: TextFormField(
       obscureText: isPassword,
+      controller: controller,
+      validator: validator,
+      onFieldSubmitted: onFieldSubmitted,
       decoration: InputDecoration(
         fillColor: Colors.white,
         border: InputBorder.none,

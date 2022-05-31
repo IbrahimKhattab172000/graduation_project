@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_const_constructors_in_immutables
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/screens/describtive_info/describtive_info_screen.dart';
@@ -16,6 +17,9 @@ class SignupScreen extends StatefulWidget {
 
 class _SignupScreenState extends State<SignupScreen> {
   bool isPassword = true;
+
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +56,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     labelText: "Email",
                     hintText: "Enter your name",
                     prefixWidget: Icon(Icons.email),
+                    controller: emailController,
                   ),
                   textBeforeEachTextFormField(text: "Phone Number"),
                   textFormField(
@@ -63,6 +68,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   textFormField(
                     labelText: "Password",
                     hintText: "Enter your Password",
+                    controller: passwordController,
                     isPassword: isPassword,
                     prefixWidget: Icon(Icons.lock),
                     suffixWidget: IconButton(
@@ -87,7 +93,9 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                   Center(
                     child: defaultButton(
-                      function: () {
+                      function: () async {
+                        await signUp();
+
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) => DescribtiveInfo(),
@@ -104,5 +112,16 @@ class _SignupScreenState extends State<SignupScreen> {
         ),
       ),
     );
+  }
+
+  Future signUp() async {
+    try {
+      FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+      );
+    } on FirebaseAuthException catch (e) {
+      print(e);
+    }
   }
 }

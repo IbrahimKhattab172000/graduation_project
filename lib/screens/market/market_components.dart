@@ -11,7 +11,7 @@ Widget partnerWidget() {
       padding: EdgeInsets.symmetric(vertical: 8.w, horizontal: 8.w),
       child: Container(
         width: 330.w,
-        height: 200.h,
+        height: 210.h,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.r),
           color: Colors.white,

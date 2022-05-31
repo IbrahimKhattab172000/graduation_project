@@ -22,6 +22,21 @@ class MyColors {
 const defaultDuration = Duration(milliseconds: 250);
 const kAnimationDuration = Duration(milliseconds: 200);
 
+validationEmail({required String value}) {
+  if (value.isEmpty) {
+    return "خخ بتضغط من غير ما تدخل ايميل ليه";
+  }
+}
+
+validationPassword({required String value}) {
+  if (value.isEmpty) {
+    return 'باسوردك يا!';
+  }
+  if (value.length < 8) {
+    return "مش اقل من 8 يسطا";
+  }
+}
+
 // Form Error
 final RegExp emailValidatorRegExp =
     RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+");

@@ -1,11 +1,13 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_print
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/screens/layout_screen/layout_screen.dart';
 import 'package:graduation_project/shared/shared_components.dart';
 
+import '../../constants.dart';
 import 'login_components.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -15,7 +17,19 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  GlobalKey<FormState> loginKey = GlobalKey<FormState>();
+
   bool isPassword = true;
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,114 +41,124 @@ class _LoginScreenState extends State<LoginScreen> {
             padding: EdgeInsets.only(top: 75.h),
             child: roundedWidget(
               height: 690.h,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  loginText(),
-                  SizedBox(
-                    height: 8.h,
-                  ),
-                  textBeforeEachTextFormField(
-                    text: "Email",
-                  ),
-                  textFormField(
-                    labelText: "Email",
-                    hintText: "Enter your email",
-                    prefixWidget: CircleAvatar(
-                      backgroundColor: Colors.white,
-                      child: Icon(
-                        Icons.email_outlined,
-                        color: Colors.black38,
-                      ),
+              child: Form(
+                key: loginKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    loginText(),
+                    SizedBox(
+                      height: 8.h,
                     ),
-                  ),
-                  textBeforeEachTextFormField(
-                    text: "Password",
-                  ),
-                  textFormField(
-                    labelText: "Password",
-                    hintText: "Enter your Password",
-                    isPassword: isPassword,
-                    prefixWidget: CircleAvatar(
-                      backgroundColor: Colors.white,
-                      child: Icon(
-                        Icons.lock,
-                        color: Colors.black38,
-                      ),
+                    textBeforeEachTextFormField(
+                      text: "Email",
                     ),
-                    suffixWidget: IconButton(
-                      onPressed: () {
-                        setState(() {
-                          isPassword = !isPassword;
-                        });
-                      },
-                      icon: isPassword
-                          ? Icon(Icons.remove_red_eye_sharp)
-                          : Icon(Icons.remove_red_eye_outlined),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 15.h,
-                  ),
-
-                  ///I used that empty container just to use beside it a my desired widget
-                  ///..then use MainAxisAlignment.spaceBetween which is one of the Row(),s features
-                  ///..to get the desired widget in the desired place.
-                  forgetPassword(context),
-
-                  SizedBox(
-                    height: 15.h,
-                  ),
-
-                  Center(
-                    child: defaultButton(
-                      function: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => LayoutScreen(),
-                          ),
-                        );
-                      },
-                      text: "Log in",
-                    ),
-                  ),
-                  SizedBox(
-                    height: 5.h,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: 15.w),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        dontHaveAccText(),
-                        SizedBox(
-                          width: 10.w,
+                    textFormField(
+                      labelText: "Email",
+                      hintText: "Enter your email",
+                      controller: emailController,
+                      validator: validationEmail(value: emailController.text),
+                      prefixWidget: CircleAvatar(
+                        backgroundColor: Colors.white,
+                        child: Icon(
+                          Icons.email_outlined,
+                          color: Colors.black38,
                         ),
-                        signupHere(context),
-                      ],
+                      ),
                     ),
-                  ),
-
-                  Padding(
-                    padding: EdgeInsets.all(10.0.h),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        smallLine(),
-                        orLoginWithText(),
-                        smallLine(),
-                      ],
+                    textBeforeEachTextFormField(
+                      text: "Password",
                     ),
-                  ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  otherLoginApproachs(),
+                    textFormField(
+                      labelText: "Password",
+                      hintText: "Enter your Password",
+                      controller: passwordController,
+                      validator:
+                          validationPassword(value: passwordController.text),
+                      isPassword: isPassword,
+                      prefixWidget: CircleAvatar(
+                        backgroundColor: Colors.white,
+                        child: Icon(
+                          Icons.lock,
+                          color: Colors.black38,
+                        ),
+                      ),
+                      suffixWidget: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            isPassword = !isPassword;
+                          });
+                        },
+                        icon: isPassword
+                            ? Icon(Icons.remove_red_eye_sharp)
+                            : Icon(Icons.remove_red_eye_outlined),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 15.h,
+                    ),
 
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                ],
+                    ///I used that empty container just to use beside it a my desired widget
+                    ///..then use MainAxisAlignment.spaceBetween which is one of the Row(),s features
+                    ///..to get the desired widget in the desired place.
+                    forgetPassword(context),
+
+                    SizedBox(
+                      height: 15.h,
+                    ),
+
+                    Center(
+                      child: defaultButton(
+                        function: () async {
+                          await signIn();
+
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => LayoutScreen(),
+                            ),
+                          );
+                        },
+                        text: "Log in",
+                      ),
+                    ),
+                    SizedBox(
+                      height: 5.h,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 15.w),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          dontHaveAccText(),
+                          SizedBox(
+                            width: 10.w,
+                          ),
+                          signupHere(context),
+                        ],
+                      ),
+                    ),
+
+                    Padding(
+                      padding: EdgeInsets.all(10.0.h),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          smallLine(),
+                          orLoginWithText(),
+                          smallLine(),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    otherLoginApproachs(),
+
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -142,7 +166,22 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
+
+//* SignIn method
+  Future signIn() async {
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+      );
+    } on FirebaseAuthException catch (e) {
+      print(e);
+    }
+  }
 }
+
+
+
 // // ignore_for_file: prefer_const_constructors
 
 // import 'dart:ui';
