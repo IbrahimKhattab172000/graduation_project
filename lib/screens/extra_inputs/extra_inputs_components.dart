@@ -59,7 +59,7 @@ class _ExtraInputMainWidgetState extends State<ExtraInputMainWidget> {
           child: Text(
             widget.text,
             style: TextStyle(
-              fontSize: 18.sp,
+              fontSize: 15.sp,
               color: Colors.white,
             ),
           ),

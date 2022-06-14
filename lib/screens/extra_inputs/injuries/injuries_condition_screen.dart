@@ -52,7 +52,7 @@ class InjuriesConditionScreen extends StatelessWidget {
                           text: "Biceps tendinitis",
                         ),
                         ExtraInputMainWidget(
-                          width: 138.w,
+                          width: 110.w,
                           text: "Ankle sprain",
                         ),
                       ],
@@ -82,7 +82,7 @@ class InjuriesConditionScreen extends StatelessWidget {
                           text: "Tennis Elbow",
                         ),
                         ExtraInputMainWidget(
-                          width: 160.w,
+                          width: 135.w,
                           text: "Calf muscle tear",
                         ),
                       ],

@@ -87,7 +87,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
       //*For the bottomNavbar
       extendBody: true,
       bottomNavigationBar: CurvedNavigationBar(
-        height: 70.h,
+        // height: 75,
         items: items,
         index: index,
         backgroundColor: MyColors.kSpecialLightGreyColor,

@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_print
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_print, unnecessary_brace_in_string_interps
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,6 +22,44 @@ class _LoginScreenState extends State<LoginScreen> {
   GlobalKey<FormState> loginKey = GlobalKey<FormState>();
 
   bool isPassword = true;
+
+  bool validateAndSave() {
+    final form = loginKey.currentState;
+    if (form!.validate()) {
+      form.save();
+      return true;
+    }
+    return false;
+  }
+
+  Future validateAndSubmit() async {
+    if (validateAndSave()) {
+      try {
+        UserCredential userCredential =
+            await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailController.text.trim(),
+          password: passwordController.text.trim(),
+        );
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'user-not-found') {
+          print('No user found for that email.');
+        } else if (e.code == 'wrong-password') {
+          print('Wrong password provided for that user.');
+        }
+      }
+    }
+  }
+
+  // Future signIn() async {
+  //   try {
+  //     await FirebaseAuth.instance.signInWithEmailAndPassword(
+  //       email: emailController.text.trim(),
+  //       password: passwordController.text.trim(),
+  //     );
+  //   } on FirebaseAuthException catch (e) {
+  //     print(e);
+  //   }
+  // }
 
   @override
   void dispose() {
@@ -57,7 +95,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       labelText: "Email",
                       hintText: "Enter your email",
                       controller: emailController,
-                      validator: validationEmail(value: emailController.text),
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return "خخ بتضغط من غير ما تدخل ايميل ليه";
+                        }
+                      },
                       prefixWidget: CircleAvatar(
                         backgroundColor: Colors.white,
                         child: Icon(
@@ -73,8 +115,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       labelText: "Password",
                       hintText: "Enter your Password",
                       controller: passwordController,
-                      validator:
-                          validationPassword(value: passwordController.text),
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return 'باسوردك يا!';
+                        }
+                        // if (value.length < 8) {
+                        //   return "مش اقل من 8 يسطا";
+                        // }
+                      },
                       isPassword: isPassword,
                       prefixWidget: CircleAvatar(
                         backgroundColor: Colors.white,
@@ -110,13 +158,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     Center(
                       child: defaultButton(
                         function: () async {
-                          await signIn();
-
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => LayoutScreen(),
-                            ),
-                          );
+                          await validateAndSubmit().then((value) {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => LayoutScreen(),
+                              ),
+                            );
+                          });
                         },
                         text: "Log in",
                       ),
@@ -165,18 +213,6 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
-  }
-
-//* SignIn method
-  Future signIn() async {
-    try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim(),
-      );
-    } on FirebaseAuthException catch (e) {
-      print(e);
-    }
   }
 }
 
