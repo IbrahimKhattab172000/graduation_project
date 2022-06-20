@@ -81,7 +81,7 @@ class HealthConditionScreen extends StatelessWidget {
                           text: "favism(G6PD)",
                         ),
                         ExtraInputMainWidget(
-                          width: 150.w,
+                          width: 135.w,
                           text: "Hypothyroidism",
                         ),
                       ],
@@ -97,7 +97,7 @@ class HealthConditionScreen extends StatelessWidget {
                           text: "Diabetes type 2",
                         ),
                         ExtraInputMainWidget(
-                          width: 130.w,
+                          width: 120.w,
                           text: "hypertension",
                         ),
                       ],

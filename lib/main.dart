@@ -8,7 +8,7 @@ import 'package:firebase_core/firebase_core.dart';
 
 List<CameraDescription>? cameras;
 
-Future<Null> main() async {
+Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 

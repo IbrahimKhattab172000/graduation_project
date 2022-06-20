@@ -16,10 +16,55 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
-  bool isPassword = true;
+  // bool isPassword = true;
+  // final emailController = TextEditingController();
+  // final passwordController = TextEditingController();
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  GlobalKey<FormState> signupKey = GlobalKey<FormState>();
+
+  bool isPassword = true;
+
+  bool validateAndSave() {
+    final form = signupKey.currentState;
+    if (form!.validate()) {
+      form.save();
+      return true;
+    }
+    return false;
+  }
+
+  Future validateAndSubmit() async {
+    if (validateAndSave()) {
+      try {
+        FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailController.text.trim(),
+          password: passwordController.text.trim(),
+        );
+      } on FirebaseAuthException catch (e) {
+        print("Sorry: ${e.toString()}");
+      }
+    }
+  }
+
+  // Future signUp() async {
+  //   try {
+  //     FirebaseAuth.instance.createUserWithEmailAndPassword(
+  //       email: emailController.text.trim(),
+  //       password: passwordController.text.trim(),
+  //     );
+  //   } on FirebaseAuthException catch (e) {
+  //     print(e);
+  //   }
+  // }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,92 +81,98 @@ class _SignupScreenState extends State<SignupScreen> {
             padding: EdgeInsets.only(top: 30.h),
             child: roundedWidget(
               height: 750.h,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  signupText(),
-                  SizedBox(
-                    height: 5.h,
-                  ),
-                  Center(
-                    child: addProfilePicStack(),
-                  ),
-                  textBeforeEachTextFormField(text: "Name"),
-                  textFormField(
-                      labelText: "Name",
+              child: Form(
+                key: signupKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    signupText(),
+                    SizedBox(
+                      height: 5.h,
+                    ),
+                    Center(
+                      child: addProfilePicStack(),
+                    ),
+                    textBeforeEachTextFormField(text: "Name"),
+                    textFormField(
+                        labelText: "Name",
+                        hintText: "Enter your name",
+                        prefixWidget: Icon(Icons.person)),
+                    textBeforeEachTextFormField(text: "Email"),
+                    textFormField(
+                      labelText: "Email",
                       hintText: "Enter your name",
-                      prefixWidget: Icon(Icons.person)),
-                  textBeforeEachTextFormField(text: "Email"),
-                  textFormField(
-                    labelText: "Email",
-                    hintText: "Enter your name",
-                    prefixWidget: Icon(Icons.email),
-                    controller: emailController,
-                  ),
-                  textBeforeEachTextFormField(text: "Phone Number"),
-                  textFormField(
-                    labelText: "Number",
-                    hintText: "Enter your number",
-                    prefixWidget: Icon(Icons.phone),
-                  ),
-                  textBeforeEachTextFormField(text: "Password"),
-                  textFormField(
-                    labelText: "Password",
-                    hintText: "Enter your Password",
-                    controller: passwordController,
-                    isPassword: isPassword,
-                    prefixWidget: Icon(Icons.lock),
-                    suffixWidget: IconButton(
-                      onPressed: () {
-                        setState(() {
-                          isPassword = !isPassword;
-                        });
+                      prefixWidget: Icon(Icons.email),
+                      controller: emailController,
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return "خخ بتضغط من غير ما تدخل ايميل ليه";
+                        }
                       },
-                      icon: isPassword
-                          ? Icon(Icons.remove_red_eye_sharp)
-                          : Icon(Icons.remove_red_eye_outlined),
                     ),
-                  ),
-                  textBeforeEachTextFormField(text: "Confirm Password"),
-                  textFormField(
-                    labelText: "Confirm",
-                    hintText: "Confirm Password",
-                    prefixWidget: Icon(Icons.lock),
-                  ),
-                  SizedBox(
-                    height: 20.h,
-                  ),
-                  Center(
-                    child: defaultButton(
-                      function: () async {
-                        await signUp();
-
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => DescribtiveInfo(),
-                          ),
-                        );
+                    textBeforeEachTextFormField(text: "Phone Number"),
+                    textFormField(
+                      labelText: "Number",
+                      hintText: "Enter your number",
+                      prefixWidget: Icon(Icons.phone),
+                    ),
+                    textBeforeEachTextFormField(text: "Password"),
+                    textFormField(
+                      labelText: "Password",
+                      hintText: "Enter your Password",
+                      controller: passwordController,
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return 'باسوردك يا!';
+                        }
+                        // if (value.length < 8) {
+                        //   return "مش اقل من 8 يسطا";
+                        // }
                       },
-                      text: "Sign up",
+                      isPassword: isPassword,
+                      prefixWidget: Icon(Icons.lock),
+                      suffixWidget: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            isPassword = !isPassword;
+                          });
+                        },
+                        icon: isPassword
+                            ? Icon(Icons.remove_red_eye_sharp)
+                            : Icon(Icons.remove_red_eye_outlined),
+                      ),
                     ),
-                  ),
-                ],
+                    textBeforeEachTextFormField(text: "Confirm Password"),
+                    textFormField(
+                      labelText: "Confirm",
+                      hintText: "Confirm Password",
+                      prefixWidget: Icon(Icons.lock),
+                    ),
+                    SizedBox(
+                      height: 20.h,
+                    ),
+                    Center(
+                      child: defaultButton(
+                        function: () async {
+                          // await signUp();
+                          await validateAndSubmit().then((value) {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => DescribtiveInfo(),
+                              ),
+                            );
+                          });
+                        },
+                        text: "Sign up",
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
         ),
       ),
     );
-  }
-
-  Future signUp() async {
-    try {
-      FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim(),
-      );
-    } on FirebaseAuthException catch (e) {
-      print(e);
-    }
   }
 }

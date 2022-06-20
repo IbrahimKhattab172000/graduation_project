@@ -121,7 +121,7 @@ class _FitnessScreenState extends State<FitnessScreen> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 35.h),
+                                padding: EdgeInsets.symmetric(horizontal: 25.h),
                                 child: trueWidget(),
                               ),
                             ],
@@ -132,7 +132,7 @@ class _FitnessScreenState extends State<FitnessScreen> {
                             children: [
                               Padding(
                                 padding:
-                                    EdgeInsets.symmetric(horizontal: 165.h),
+                                    EdgeInsets.symmetric(horizontal: 128.h),
                                 child: trueWidget(),
                               ),
                             ],
@@ -142,7 +142,7 @@ class _FitnessScreenState extends State<FitnessScreen> {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               Padding(
-                                padding: EdgeInsets.only(left: 300.h),
+                                padding: EdgeInsets.only(left: 235.h),
                                 child: trueWidget(),
                               ),
                             ],
@@ -172,7 +172,7 @@ class _FitnessScreenState extends State<FitnessScreen> {
                     if (secIsTapped && !thirdIsTapped)
                       Column(
                         children: [
-                          loseWeightText(text: "Miantain your fitness"),
+                          loseWeightText(text: "Maintain your fitness"),
                           SizedBox(
                             height: 20.h,
                           ),
