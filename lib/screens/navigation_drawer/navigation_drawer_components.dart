@@ -8,12 +8,15 @@ Widget drawerTile({
   Color? titleColor,
 }) =>
     ListTile(
+      onTap: onTap,
       leading: Icon(
         iconData,
         color: Colors.white,
       ),
-      title: Text(text,
-          style: TextStyle(
-            color: titleColor ?? Colors.white,
-          )),
+      title: Text(
+        text,
+        style: TextStyle(
+          color: titleColor ?? Colors.white,
+        ),
+      ),
     );

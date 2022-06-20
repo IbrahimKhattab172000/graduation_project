@@ -54,7 +54,7 @@ class NavigationDrawerScreen extends StatelessWidget {
                 horizontal: 10.h,
               ),
               child: Text(
-                "Nabil!",
+                "Ibrahim Khattab!",
                 style: TextStyle(
                   fontSize: 20.sp,
                   fontWeight: FontWeight.bold,
@@ -68,7 +68,7 @@ class NavigationDrawerScreen extends StatelessWidget {
                 horizontal: 10.h,
               ),
               child: Text(
-                "Hello there, everyone! Nabil is my name.\nI adore drinking tea with milk, and I do so on a daily basis",
+                "Hello there, everyone! Ibrahim is my name.\nI adore drinking tea with milk, and I do so on a daily basis :)",
                 style: TextStyle(
                   fontSize: 12.sp,
                   color: Colors.white,
