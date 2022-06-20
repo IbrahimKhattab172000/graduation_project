@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -42,7 +44,7 @@ class NavigationDrawerScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: CircleAvatar(
                   radius: 45.r,
-                  backgroundImage: AssetImage("assets/images/tea.jpg"),
+                  backgroundImage: AssetImage("assets/images/mypic2.jpg"),
                 ),
               ),
             ),

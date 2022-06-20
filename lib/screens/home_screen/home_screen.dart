@@ -6,21 +6,29 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/constants.dart';
 import 'package:graduation_project/shared/shared_components.dart';
 
+import '../navigation_drawer/navigation_drawer_screen.dart';
 import 'home_components.dart';
 
 class HomeScreen extends StatelessWidget {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
+
   HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: simpleAppBar(
         showActions: true,
         actionsWidget: Icon(Icons.search),
         onPressAction: () {},
         showLeading: true,
         leadingIcon: Icons.menu,
+        onPressLeading: () {
+          _scaffoldKey.currentState!.openDrawer();
+        },
       ),
+      drawer: NavigationDrawerScreen(),
       body: Container(
         color: MyColors.kMainLightColor,
         height: double.infinity,

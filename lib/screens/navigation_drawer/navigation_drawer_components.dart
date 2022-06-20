@@ -12,6 +12,8 @@ Widget drawerTile({
         iconData,
         color: Colors.white,
       ),
-      title: Text(text),
-      tileColor: titleColor ?? Colors.white,
+      title: Text(text,
+          style: TextStyle(
+            color: titleColor ?? Colors.white,
+          )),
     );
