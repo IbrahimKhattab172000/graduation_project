@@ -29,63 +29,67 @@ Widget mainComponent({
   required String text,
   double? height,
   double? width,
+  GestureTapCallback? onTap,
 }) {
-  return Padding(
-    padding: EdgeInsets.only(left: 20.w, right: 2.w),
-    child: SizedBox(
-      height: height ?? 155.h,
-      width: width ?? 205.w,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(18.r),
-        child: Stack(
-          //*So important to expand the image
-          fit: StackFit.expand,
-          children: [
-            Image.asset(
-              imgSrc,
-              fit: BoxFit.cover,
-            ),
-            Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Color(0xFF343434).withOpacity(0.4),
-                    Color(0xFF343434).withOpacity(0.15),
-                  ],
+  return GestureDetector(
+    onTap: onTap,
+    child: Padding(
+      padding: EdgeInsets.only(left: 20.w, right: 2.w),
+      child: SizedBox(
+        height: height ?? 155.h,
+        width: width ?? 205.w,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(18.r),
+          child: Stack(
+            //*So important to expand the image
+            fit: StackFit.expand,
+            children: [
+              Image.asset(
+                imgSrc,
+                fit: BoxFit.cover,
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Color(0xFF343434).withOpacity(0.4),
+                      Color(0xFF343434).withOpacity(0.15),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: 15.w,
-                vertical: 10.h,
-              ),
-              child: Text.rich(
-                TextSpan(
-                  style: TextStyle(color: Colors.white),
-                  children: [
-                    // TextSpan(
-                    //   text: "\n",
-                    //   style: TextStyle(
-                    //     fontSize: 15.sp,
-                    //     fontWeight: FontWeight.bold,
-                    //   ),
-                    // ),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 15.w,
+                  vertical: 10.h,
+                ),
+                child: Text.rich(
+                  TextSpan(
+                    style: TextStyle(color: Colors.white),
+                    children: [
+                      // TextSpan(
+                      //   text: "\n",
+                      //   style: TextStyle(
+                      //     fontSize: 15.sp,
+                      //     fontWeight: FontWeight.bold,
+                      //   ),
+                      // ),
 
-                    TextSpan(
-                      text: text,
-                      style: TextStyle(
-                        fontSize: 13.sp,
-                        fontWeight: FontWeight.bold,
+                      TextSpan(
+                        text: text,
+                        style: TextStyle(
+                          fontSize: 13.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     ),

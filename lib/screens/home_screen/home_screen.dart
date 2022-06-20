@@ -7,6 +7,7 @@ import 'package:graduation_project/constants.dart';
 import 'package:graduation_project/shared/shared_components.dart';
 
 import '../navigation_drawer/navigation_drawer_screen.dart';
+import '../water/water_screen1.dart';
 import 'home_components.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -70,13 +71,20 @@ class HomeScreen extends StatelessWidget {
                 child: Row(
                   children: [
                     mainComponent(
-                      imgSrc: "assets/images/selfcare.jpg",
-                      text: "self care",
+                      imgSrc: "assets/images/water.jpg",
+                      text: "Water",
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => MyAnimation(),
+                          ),
+                        );
+                      },
                     ),
                     mainComponent(
                       imgSrc: "assets/images/nutrition.jpg",
                       text: "nutrition",
-                    )
+                    ),
                   ],
                 ),
               ),
