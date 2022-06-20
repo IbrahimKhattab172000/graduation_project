@@ -16,8 +16,10 @@ import '../../main.dart';
 import '../../tensorflow/main_screen.dart';
 
 class LayoutScreen extends StatefulWidget {
+  final int indexFromDrawer;
   LayoutScreen({
     Key? key,
+    this.indexFromDrawer = 2,
   }) : super(key: key);
 
   @override
@@ -25,6 +27,19 @@ class LayoutScreen extends StatefulWidget {
 }
 
 class _LayoutScreenState extends State<LayoutScreen> {
+  int screenIndex = 2;
+
+  setScreenIndex(int value) {
+    this.screenIndex = value;
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    setScreenIndex(widget.indexFromDrawer);
+    super.initState();
+  }
+
   //*The order is important yasta
   final items = <Widget>[
     Container(
@@ -78,9 +93,6 @@ class _LayoutScreenState extends State<LayoutScreen> {
     ProfileScreen(),
   ];
 
-//*Default page
-  int index = 2;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,13 +101,13 @@ class _LayoutScreenState extends State<LayoutScreen> {
       bottomNavigationBar: CurvedNavigationBar(
         // height: 75,
         items: items,
-        index: index,
+        index: screenIndex,
         backgroundColor: MyColors.kSpecialLightGreyColor,
         color: MyColors.kMainLightColor,
         animationCurve: Curves.easeInOut,
-        onTap: (index) => setState(() => this.index = index),
+        onTap: (index) => setScreenIndex(index),
       ),
-      body: screens[index],
+      body: screens[screenIndex],
     );
   }
 }

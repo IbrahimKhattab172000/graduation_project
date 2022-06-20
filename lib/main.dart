@@ -54,24 +54,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// class MyApp extends StatelessWidget {
-//   const MyApp({Key? key}) : super(key: key);
-
-//   // This widget is the root of your application.
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'Healthy life',
-//       debugShowCheckedModeBanner: false,
-//       theme: ThemeData(
-//         primaryColor: kPrimaryColor,
-//       ),
-//       home:
-//     );
-//   }
-// }
-
-
 
 
 
