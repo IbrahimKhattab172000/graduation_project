@@ -26,7 +26,7 @@ List<Map<dynamic, dynamic>> dummyImages = [
 
 Widget mainComponent({
   required String imgSrc,
-  required String text,
+   String? text,
   double? height,
   double? width,
   GestureTapCallback? onTap,

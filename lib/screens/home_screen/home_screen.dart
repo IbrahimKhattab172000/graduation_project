@@ -4,9 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/constants.dart';
+import 'package:graduation_project/screens/dinner_screen/dinner_screen.dart';
 import 'package:graduation_project/shared/shared_components.dart';
 
+import '../articles_screen/articles_screen.dart';
+import '../break_fast/breakfast_screen.dart';
+import '../lunch_screen/lunch_screen.dart';
 import '../navigation_drawer/navigation_drawer_screen.dart';
+import '../search_screen/search_screen.dart';
 import '../water/water_screen1.dart';
 import 'home_components.dart';
 
@@ -22,7 +27,11 @@ class HomeScreen extends StatelessWidget {
       appBar: simpleAppBar(
         showActions: true,
         actionsWidget: Icon(Icons.search),
-        onPressAction: () {},
+        onPressAction: () {
+          Navigator.of(context).push(MaterialPageRoute(builder: (context){
+            return GridSearchScreen();
+          }),);
+        },
         showLeading: true,
         leadingIcon: Icons.menu,
         onPressLeading: () {
@@ -56,6 +65,10 @@ class HomeScreen extends StatelessWidget {
                     mainComponent(
                       imgSrc: "assets/images/cardioexercises.jpg",
                       text: "cardio exercises",
+                    ),
+                    mainComponent(
+                      imgSrc: "assets/images/cardioexercises.jpg",
+                      text: "cardio exercises",
                     )
                   ],
                 ),
@@ -82,9 +95,20 @@ class HomeScreen extends StatelessWidget {
                       },
                     ),
                     mainComponent(
-                      imgSrc: "assets/images/nutrition.jpg",
-                      text: "nutrition",
+                      imgSrc: "assets/images/sleep.jpg",
+                      text: "Sleep",
                     ),
+                    mainComponent(
+                      imgSrc: "assets/images/articles.jpg",
+                      text: "Articles",
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context){
+                          return ArticlesScreen();
+                        }),);
+                      },
+                    ),
+
+
                   ],
                 ),
               ),
@@ -103,6 +127,11 @@ class HomeScreen extends StatelessWidget {
                       text: "Breakfast",
                       height: 134.h,
                       width: 115.w,
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context){
+                         return BreakfastScreen();
+                        }),);
+                      },
                     ),
                     SizedBox(
                       width: 10.w,
@@ -112,6 +141,11 @@ class HomeScreen extends StatelessWidget {
                       text: "Lunch",
                       height: 134.h,
                       width: 115.w,
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context){
+                          return LaunchScreen();
+                        }),);
+                      },
                     ),
                     SizedBox(
                       width: 10.w,
@@ -121,6 +155,11 @@ class HomeScreen extends StatelessWidget {
                       text: "Dinner",
                       height: 134.h,
                       width: 115.w,
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context){
+                          return DinnerScreen();
+                        }),);
+                      },
                     )
                   ],
                 ),

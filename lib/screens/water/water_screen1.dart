@@ -1,6 +1,8 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+
+import 'water_screen2.dart';
 
 class MyAnimation extends StatefulWidget {
   const MyAnimation({Key? key}) : super(key: key);
@@ -54,16 +56,18 @@ class MyClipPath extends AnimatedWidget {
             height: 30,
           ),
           Row(
-            children: [
+            children:  [
+
               Padding(
                 padding: EdgeInsets.all(8.0),
-                child: CircleAvatar(
-                  radius: 15,
-                  backgroundColor: Colors.grey,
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).pop();
-                    },
+                child: GestureDetector(
+                  onTap: (){
+
+                   return Navigator.of(context).pop();
+                  },
+                  child: CircleAvatar(
+                    radius: 15,
+                    backgroundColor: Colors.grey,
                     child: Icon(
                       Icons.arrow_back_ios_outlined,
                       color: Colors.white,
@@ -77,33 +81,42 @@ class MyClipPath extends AnimatedWidget {
             child: Stack(children: [
               Center(
                 child: Column(
-                  children: const [
+                  children:  [
                     SizedBox(
                       height: 300,
                     ),
-                    Text(
-                      '65%',
-                      style: TextStyle(
-                          fontSize: 40,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black),
-                    ),
-                    Text(
-                      '4030 ML/6200 ML',
-                      style: TextStyle(fontSize: 25, color: Colors.black87),
-                    ),
+                    // Text(
+                    //   '65%',
+                    //   style: TextStyle(
+                    //       fontSize: 40,
+                    //       fontWeight: FontWeight.bold,
+                    //       color: Colors.black),
+                    // ),
+                    // Text(
+                    //   '4030 ML/6200 ML',
+                    //   style: TextStyle(fontSize: 25, color: Colors.black87),
+                    // ),
                     SizedBox(
                       height: 200,
                     ),
-                    CircleAvatar(
-                      radius: 30,
-                      backgroundColor: Colors.black,
-                      child: Icon(
-                        Icons.add,
-                        color: Colors.white,
-                        size: 55,
-                      ),
-                    ),
+
+                    // CircleAvatar(
+                    //   radius: 30,
+                    //   backgroundColor: Colors.black,
+                    //   child: IconButton(
+                    //      icon: Icon(Icons.add),
+                    //
+                    //     color: Colors.white,
+                    //     onPressed: () {
+                    //       Navigator.of(context).push(
+                    //         MaterialPageRoute(
+                    //           builder: (context) => MyAnimation2(),
+                    //         ),
+                    //       );
+                    //     },
+                    //     //size: 55,
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
@@ -137,6 +150,51 @@ class MyClipPath extends AnimatedWidget {
                   ),
                 ),
               ),
+              Padding(
+                padding:  EdgeInsets.only(right: 160,bottom: 80),
+                child: Align(
+                  alignment: Alignment.bottomRight,
+                  child: CircleAvatar(
+                    radius: 30,
+                    backgroundColor: Colors.white,
+                    child: IconButton(
+                      icon: Icon(Icons.add,size: 35,),
+
+                      color: Colors.grey,
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => MyAnimation2(),
+                          ),
+                        );
+                      },
+                      //size: 55,
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding:  EdgeInsets.only(top: 300),
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Column(
+                    children: [
+                      Text(
+                        '65%',
+                        style: TextStyle(
+                            fontSize: 40,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
+                      ),
+                      Text(
+                        '4030 ML/6200 ML',
+                        style: TextStyle(fontSize: 25, color: Colors.white),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+
             ]),
           ),
         ],
