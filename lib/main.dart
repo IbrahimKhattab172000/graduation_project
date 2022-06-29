@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     ///* Using ScreenUtilInit to handle all sorts of responsivety
 
     return ScreenUtilInit(

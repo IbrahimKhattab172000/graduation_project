@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
 class MyAnimation extends StatefulWidget {
@@ -52,15 +54,20 @@ class MyClipPath extends AnimatedWidget {
             height: 30,
           ),
           Row(
-            children: const [
+            children: [
               Padding(
                 padding: EdgeInsets.all(8.0),
                 child: CircleAvatar(
                   radius: 15,
                   backgroundColor: Colors.grey,
-                  child: Icon(
-                    Icons.arrow_back_ios_outlined,
-                    color: Colors.white,
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Icon(
+                      Icons.arrow_back_ios_outlined,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),

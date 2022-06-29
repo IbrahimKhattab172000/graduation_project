@@ -91,7 +91,7 @@ class NavigationDrawerScreen extends StatelessWidget {
                     iconData: Icons.person_outline,
                     text: "Profile",
                     onTap: () {
-                      Navigator.of(context).pushReplacement(
+                      Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (context) =>
                               LayoutScreen(indexFromDrawer: 4),
