@@ -97,7 +97,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       controller: emailController,
                       validator: (value) {
                         if (value.isEmpty) {
-                          return "خخ بتضغط من غير ما تدخل ايميل ليه";
+                          return "Please enter an email";
                         }
                       },
                       prefixWidget: CircleAvatar(
@@ -117,7 +117,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       controller: passwordController,
                       validator: (value) {
                         if (value.isEmpty) {
-                          return 'باسوردك يا!';
+                          return 'Enter your password!';
                         }
                         // if (value.length < 8) {
                         //   return "مش اقل من 8 يسطا";
